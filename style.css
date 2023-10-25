@@ -1,0 +1,328 @@
+/* styles needed for the rice farming game */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=La+Belle+Aurore&family=Nunito:wght@300&family=Press+Start+2P&family=Source+Code+Pro:ital,wght@1,300&family=Zen+Dots&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Onest&display=swap');
+
+.science {
+  display:none;
+}
+
+#funbuttons {
+  margin-bottom: 10px;
+}
+
+#activetab {
+  display: block;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,14,74,1) 57%, rgba(18,18,84,1) 100%);
+  color: cyan;
+  font-family: Onest, sans-serif;
+}
+
+#browntrade {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+a {
+  color: cyan;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: Nunito, monospace;
+}
+
+select {
+  font-family: Onest, sans-serif;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: 1px solid;
+  border: none;
+  margin: 5px;
+  color: cyan;
+  background-color:#1438a3;
+}
+
+select option {
+  color: black;
+}
+select option:disabled {
+  color: #5e5e5e;
+}
+
+select option {
+  background-color: white;
+}
+
+
+button {
+  padding: 5px;
+  font-family: Onest, sans-serif;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: 1px solid;
+  border: none;
+  margin: 5px;
+  color: cyan;
+  background-color:#1438a3;
+}
+
+button:hover {
+  background-color:#245bff;
+  transform: scale(1.15);
+  transition: 0.5s;
+}
+
+button:active {
+  transform: translateY(-5px);
+  transition: 0.1s;
+}
+
+form input {
+  font-family: Nunito, sans-serif;
+  padding: 2px;
+  cursor: pointer;
+}
+
+form input:hover {
+  transform: scale(1.15);
+  transition: 0.5s;
+}
+
+form input:active {
+  transform: translateY(-5px);
+  transition: 0.1s;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  transform: none;
+  transition: none;
+  background-color: #b8b8b8;
+}
+
+hr {
+  height: 2px;
+  background-color: black;
+  border: none;
+}
+
+
+.funactive {
+  background-color:#4267d7;
+}
+body {
+  margin: 0;
+  padding:0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width:100%;
+  overflow-wrap:break-word;
+}
+
+#startup {
+  font-family:Onest, monospace;
+  text-align:center;
+  animation-name: bigin;
+  animation-duration: 0.5s;
+  position:relative;
+  margin: auto;
+}
+
+
+#game {
+  display:none;
+  font-family: Onest, monospace;
+  text-align:center;
+  width: 100%;
+  min-height: 100%;
+  justify-content: space-evenly;
+  align-items: top;
+}
+
+
+
+
+
+.tile {
+  display:none;
+  font-family: Onest, monospace;
+  text-align:center;
+  margin: 7px;
+  width: 1.05in;
+  height: 1.05in;
+  vertical-align: top;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.tile:hover {
+  transform: scale(1.15);
+  transition: 0.5s;
+}
+
+.tile:active {
+  transform: translateY(-5px);
+  transition: 0.1s;
+}
+
+.shop {
+  display:none;
+}
+
+.shop button {
+  color:cyan;
+  padding: 10px;
+  font-family: Onest, monospace;
+  border-radius: 10px;
+  cursor:pointer;
+  animation-name: shadowfade;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin: 10px;
+}
+.shop button:hover {
+  transform: scale(1.15);
+  transition: 0.5s;
+}
+.shop button:active {
+  transform: translateY(-5px);
+  transition: 0.1s;
+}
+
+#buywater {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#buyplain {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#buyboost {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#byland {
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 5px;
+}
+
+.shop {
+  text-align:center;
+}
+
+#stufff {
+  width:33%;
+  float:right;
+}
+  #tiles {
+  width:33%;
+  margin:auto;
+    max-width: 360px;
+}
+
+#stats {
+  width:33%;
+  float:left;
+}
+
+@media screen and (min-width: 460px) {
+  #stufff {
+  width:33%;
+  float:right;
+  margin-right:20px;
+}
+
+#stats {
+  width:33%;
+  float:left;
+  margin-left:20px;
+}
+}
+  
+#dialogs {
+  display:flex;
+  flex-direction:column;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: auto;
+  overflow: auto;
+  justify-content: flex-end;
+}
+
+@keyframes fadein {from {opacity: 0; }to{ opacity: 1; }}
+@keyframes fadeout {from{opacity:0.9;}to{opacity:0;}}
+@keyframes fadeoutother {from{opacity:1;}to{opacity: 0;}}
+@keyframes fadeinout {0% {opacity:1}50% {opacity: 0;}100%{opacity:1;}}
+@keyframes bigin {from{scale:2;}to{scale:1}}
+@keyframes shadowfade {0%{box-shadow: #000 0px 0px 0px;}50%{box-shadow: #000 0px 0px 10px;}100%{box-shadow: #000 0px 0px 0px;}1}
+@keyframes biginout {0%{scale:1;} 50%{scale:2;}100%{scale:1;}}
+
+          #xpBarContainer {
+        width: 300px;
+        height: 40px;
+        position: relative;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+  
+      #xpBar {
+        width: 100%;
+        height: 16px;
+        border: 4px solid #000000;
+        border-radius: 10px;
+        position: relative;
+        background-color: #7ab3b3;
+      }
+  
+      .divider {
+        height: 100%;
+        width: 2px;
+        background-color: #000000;
+        position: absolute;
+        top: 0;
+      }
+  
+      #filledXP {
+        border-radius:7px;
+        height: 100%;
+        position: absolute;
+        background-color: darkblue;
+        top: 0;
+        left: 0;
+      }
+  
+      #xpLevel {
+        width: 300px;
+        text-align: center;
+        order: 1
+      }
+
+.settingz {
+  display:none;
+}
+
+.achievestats {
+  display:none;
+}
+
+#settingz button {
+  background-color: #1438a3;
+}
+
+@keyframes flash {
+  0% {background-color:#0040ff;} 50% {background-color: #1438a3;} 100% {background-color:#0040ff;}
+}

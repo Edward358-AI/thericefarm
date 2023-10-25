@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<!-- the skeleton, or base of the rice farming game -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <title>The Rice Farm</title>
+</head>
+
+<body>
+  <div id="startup">
+    <h1>Welcome to The Rice Farm. (v7.1.3 Beta)</h1>
+    <p>Please provide us with your name:</p>
+    <form id="name">
+      <input type="text">
+      <input type="submit" value="Let's go farming!">
+    </form>
+  </div>
+  <div id="introduction">
+    
+  </div>
+  <div id="game">
+    <h3 id="welcomename">Welcome back, Peasant </h3>
+    <p>notice: best for large windows</p>
+    <a href="landing.html" target="_blank"><button>learn more...</button></a><br>
+    <button style="display:none;margin: 0 auto;" id="showend" onclick="document.getElementById('ending').style.display = 'block'">show ending</button>
+
+    <br>
+    <div id="xpBarContainer">
+      <div id="xpLevel"></div>
+      <div id="xpBar">
+        <div id="filledXP"></div>
+        <div class="divider" style="left: 10%;"></div>
+        <div class="divider" style="left: 20%;"></div>
+        <div class="divider" style="left: 30%;"></div>
+        <div class="divider" style="left: 40%;"></div>
+        <div class="divider" style="left: 50%;"></div>
+        <div class="divider" style="left: 60%;"></div>
+        <div class="divider" style="left: 70%;"></div>
+        <div class="divider" style="left: 80%;"></div>
+        <div class="divider" style="left: 90%;"></div>
+      </div>
+    </div>
+    <div id="stats">
+      <p>Seeds left: </p><select id="choosing">
+        <option value="noselect">Not selected</option>
+        <option value="plain">Plain</option>
+        <option value="select" disabled>Select</option>
+        <option value="brown" disabled>Brown</option>
+        <option value="gold" disabled>Gold</option>
+      </select>
+      <p id="water">Water left: </p>
+      <p id="money">Money: 元</p>
+      <p id="riceamount">Rice: <br>Brown rice: <br>Gold rice: </p><button id="sell">Sell Rice</button>
+      <p id="fertilizer">Fertilizer: </p><select id="usefert">
+        <option value="true">On</option>
+        <option value="false" selected>Off</option>
+      </select>
+      <p id="research">Research: 0</p>
+    </div>
+    <div id="stufff">
+      <div id="funbuttons">
+        <button class="funactive" onclick="show(this)" id="0">Market</button>
+        <button onclick="show(this)" id="1">Research</button>
+        <button onclick="show(this)" id="2">Achievements/Stats</button>
+        <button onclick="show(this)" id="3">Settings</button></div>
+      <span id="tabs">
+      <div class="shop" id="activetab">
+        <button>Buy rice seeds</button><br>
+        <button>???????</button><br>
+        <button>Buy water</button><br>
+        <button>Buy fertilizer</button><br>
+        <button>???????</button><br>
+      </div>
+      <div class="science">
+        <button>?????</button><br>
+        <button>?????</button><br>
+        <button>?????</button><br>
+        <button>?????</button><br>
+        <button>?????</button><br>
+        <button>?????</button><br>
+      </div>
+      <div class="achievestats">
+        Achievements<br><br>
+        <div>
+        </div><br><br>
+        Player Stats
+        <div>
+        </div>
+      </div>
+      <div class="settingz">
+        <button id="delete" style="background-color:red">wipe all data</button><br>
+        <button id="manualsave">(manually) save data</button><br>
+        <button id="namechange">change name</button><br>
+        <button id="export">export</button><button id="import">import</button><br>
+        <textarea id="blig"></textarea><br>
+        <button onclick="alert(`Credits:
+        The source code for this was developed by me, Edward Jiang. The original source of inspiration was from my friend, nicknamed Giuseppe, to make the rice farming aspect. The late game components were largely influenced by Liu Cixin's Three Body Problem series, Space Company (game by Sparticle999), and my physics teacher. Special kudos to @Dodge1 on replit for helping devise the XP bar solution! He is a fantastic person. Detailed credits can be found in many of the source files.`)">show credits</button><br>
+        <button
+          onclick="alert('Remember to download a new version occasionally for newest updates!');window.open('https://replit.com/@edjiang1234/thericefarm.zip', '_blank')">Offline
+          version download</button>
+        <button onclick="window.open('mailto:edward456jiang@gmail.com', '_blank')">Questions? Comments? Bugs?</button>
+      </div>
+      </span>
+    </div>
+    <div id="tiles">
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+    </div>
+    <div id="dialogs"></div>
+  </div>
+  <script src="object-observe.js"></script>
+  <script src="lzstring.js"></script>
+  <script src="constant.js"></script>
+  <script src="save.js"></script>
+  <script src="update.js"></script>
+  <script src="market.js"></script>
+  <script src="settings.js"></script>
+  <script src="science.js"></script>
+  <script src="xp.js"></script>
+  <script src="notif.js"></script>
+  <script src="game.js"></script>
+  <script>
+    function show(item) {
+      let a = document.getElementsByClassName("funactive")[0]
+      let b = document.getElementById("tabs")
+      b.children[a.id].removeAttribute("id")
+      b.children[item.id].id = "activetab"
+      a.classList.remove("funactive")
+      item.classList.add("funactive")
+    }
+  </script>
+</body>
+<div id="ending" style="height:100%;width:100%;background-size: cover;background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,14,74,1) 57%, rgba(18,18,84,1) 100%);color: cyan;z-index: 999;font-family: Onest, sans-serif;position:absolute;text-align:center;display:flex;animation:fadein 5s linear;display:none;" onclick="this.style.display = 'none'">
+  <span style="margin:auto;">
+    <h1>Congratulations.</h1>
+    <h3>You have reached the end of the game.</h3>
+    <p>This is the end of a journey of a lifetime. What felt like days of grinding and playing has been compressed into one small little game. Yet time passes by so quickly, leaving us with no time to spare. You have proven to the stars and yourself, that the only true limitation is ourselves. What we perceive as impossible is only impossible in our imagination. You see, the reason why our brainpower is limited its because it limits itself. To be able to think freely and turn those thoughts into tangible reality would be the ultimate end goal. Will humanity ever reach this ultimate goal, I will never know. But starting with you, you can strive toward it. Instead of giving yourself to time itself, give that time to yourself. Only you will truly benefit from it, and that's what matters. These are some words left by the stars. I thought you might wanted to read it. Now, farewell. You can revisit this message anytime you'd like.</p>
+  </span>
+</div>
+</html>
