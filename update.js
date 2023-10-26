@@ -68,28 +68,29 @@ function update() {
     science[3].style.display = "none"
   }
   if (playerdata.unlocked.stage3) {
+    secret.innerHTML = "show ending"
+    secret.onclick = () => {
+      document.getElementById('ending').style.display = 'block'
+    }
+  }
+  if (playerdata.unlocked.brownPlus) {
     science[4].style.display = "none"
     science[5].style.display = "none"
   }
-  if (playerdata.unlocked.brownPlus) {
+  if (playerdata.unlocked.goldPlus) {
     science[6].style.display = "none"
     science[7].style.display = "none"
   }
-  if (playerdata.unlocked.goldPlus) {
+  if (playerdata.unlocked.betterFert) {
     science[8].style.display = "none"
     science[9].style.display = "none"
-  }
-  if (playerdata.unlocked.betterFert) {
-    science[10].style.display = "none"
-    science[11].style.display = "none"
   }
   if (playerdata.unlocked.research) {
     science[0].innerHTML = "Buy Stage 1"
     science[2].innerHTML = "Buy Stage 2"
-    science[4].innerHTML = "Buy Stage 3"
-    science[6].innerHTML = "Upgrade Brown Seeds"
-    science[8].innerHTML = "Upgrade Gold Seeds"
-    science[10].innerHTML = "Upgrade Fertilizer"
+    science[4].innerHTML = "Upgrade Brown Seeds"
+    science[6].innerHTML = "Upgrade Gold Seeds"
+    science[8].innerHTML = "Upgrade Fertilizer"
   }
   if (playerdata.unlocked.brownPlus) {
     select.mutationChance = 0.2
@@ -104,4 +105,7 @@ function update() {
 }
 update()
 
-Object.observe(playerdata, update)
+playerdata = observe(playerdata, (target, prop, changes) => {
+  target[prop] = changes
+  update()
+})

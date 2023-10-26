@@ -1,4 +1,6 @@
 
+let secret = document.getElementById("???")
+
 if (!playerdata.unlocked.stage1) {
   science[0].addEventListener("click", function stageOne() {
     if (playerdata.unlocked.research) {
@@ -55,7 +57,7 @@ science[3].style.display = "none"
 }
 
 if (!playerdata.unlocked.stage3) {
-  science[4].addEventListener("click", function stageThree() {
+  secret.addEventListener("click", function stageThree() {
     if (playerdata.unlocked.research && playerdata.unlocked.stage2) {
       if (playerdata.research >= 50000 && playerdata.money >= 50000 && playerdata.brownSeeds >= 500 && playerdata.goldSeeds >= 1) {
         let buyStage = confirm("Are you sure you would like to acquire the knowledge for stage 3 in exchange for 50000 research, 50000元, 500 brown seeds, and a gold seed?")
@@ -65,12 +67,14 @@ if (!playerdata.unlocked.stage3) {
           playerdata.brownSeeds -= 500
           playerdata.goldSeeds--
           playerdata.unlocked.stage3 = true
-          science[4].removeEventListener("click", stageThree)
-          science[4].style.display = "none"
-science[5].style.display = "none"
+          secret.removeEventListener("click", stageThree)
           alert("You have now completed stage 3. Congratulations, you have completed all the stages! 10 gold seeds have been presented to you by the stars for your dedication and hard work. A message awaits you. Go forth!")
-          document.getElementById("ending").style.display = "block"
+          document.getElementById('ending').style.display = 'block'
           playerdata.goldSeeds += 10
+          secret.innerHTML = "show ending"
+          secret.onclick = () => {
+            document.getElementById('ending').style.display = 'block'
+          }
         }
       } else {
         alert("Need 50000 research, 50000元, 500 brown seeds, and a gold seed.")
@@ -85,7 +89,7 @@ science[5].style.display = "none"
 }
 
 if (!playerdata.unlocked.brownPlus) {
-  science[6].addEventListener("click", function scienceBrown() {
+  science[4].addEventListener("click", function scienceBrown() {
     if (playerdata.unlocked.research && playerdata.unlocked.brown[0]) {
       if (playerdata.research >= 2000 && playerdata.selectSeeds >= 100) {
         let yesno = confirm("Are you sure you would like to research brown mutations for 2000 research and 100 select seeds?")
@@ -93,9 +97,9 @@ if (!playerdata.unlocked.brownPlus) {
           playerdata.unlocked.brownPlus = true
           playerdata.research -= 2000
           playerdata.selectSeeds -= 100
-          science[6].removeEventListener("click", scienceBrown)
-          science[6].style.display = "none"
-science[7].style.display = "none"
+          science[4].removeEventListener("click", scienceBrown)
+          science[4].style.display = "none"
+science[5].style.display = "none"
           alert("You now know the ways of brown mutations and have thus improved your chances of one.")
         }
       } else {
@@ -106,12 +110,12 @@ science[7].style.display = "none"
     }
   })
 } else {
-  science[6].style.display = "none"
-science[7].style.display = "none"
+  science[4].style.display = "none"
+science[5].style.display = "none"
 }
 
 if (!playerdata.unlocked.goldPlus) {
-  science[8].addEventListener("click", function scienceGold() {
+  science[6].addEventListener("click", function scienceGold() {
     if (playerdata.unlocked.research && playerdata.unlocked.gold[0]) {
       if (playerdata.research >= 5000 && playerdata.brownSeeds >= 100) {
         let yesno = confirm("Are you sure you would like to research gold mutations for 5000 research and 100 brown seeds?")
@@ -119,9 +123,9 @@ if (!playerdata.unlocked.goldPlus) {
           playerdata.unlocked.goldPlus = true
           playerdata.research -= 5000
           playerdata.brownSeeds -= 100
-          science[8].removeEventListener("click", scienceGold)
-          science[8].style.display = "none"
-science[9].style.display = "none"
+          science[6].removeEventListener("click", scienceGold)
+          science[6].style.display = "none"
+science[7].style.display = "none"
           alert("You now know the ways of gold mutations and have thus improved your chances of one.")
         }
       } else {
@@ -132,12 +136,12 @@ science[9].style.display = "none"
     }
   })
 } else {
-  science[8].style.display = "none"
-science[9].style.display = "none"
+  science[6].style.display = "none"
+science[7].style.display = "none"
 }
 
 if (!playerdata.unlocked.betterFert) {
-  science[10].addEventListener("click", function scienceFert() {
+  science[8].addEventListener("click", function scienceFert() {
     if (playerdata.unlocked.research) {
       if (playerdata.research >= 1000 && playerdata.fertile >= 200) {
         let yesno = confirm("Are you sure you would like to research fertilizer for 1000 research and 200 fertilizer?")
@@ -145,9 +149,9 @@ if (!playerdata.unlocked.betterFert) {
           playerdata.unlocked.betterFert = true
           playerdata.research -= 1000
           playerdata.fertile -= 100
-          science[10].removeEventListener("click", scienceFert)
-          science[10].style.display = "none"
-          science[11].style.display = "none"
+          science[8].removeEventListener("click", scienceFert)
+          science[8].style.display = "none"
+          science[9].style.display = "none"
           alert("You have now acquired a more technologically advanced fertilizer.")
         }
       } else {
@@ -158,6 +162,6 @@ if (!playerdata.unlocked.betterFert) {
     }
   })
 } else {
-  science[10].style.display = "none"
-  science[11].style.display = "none"
+  science[8].style.display = "none"
+  science[9].style.display = "none"
 }
