@@ -108,4 +108,5 @@ update()
 playerdata = observe(playerdata, (target, prop, changes) => {
   target[prop] = changes
   update()
+  return true
 })
