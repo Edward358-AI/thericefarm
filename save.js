@@ -140,6 +140,7 @@ var updateStorage = setInterval(() => {
 var imp = document.getElementById("import")
 var exp = document.getElementById("export")
 var blig = document.getElementById("blig")
+var copy = document.getElementById("copy")
 
 exp.onclick = () => {
   localStorage.setItem("playerdata", JSON.stringify(playerdata))
@@ -155,4 +156,9 @@ imp.onclick = () => {
   } else {
     alert("An error occured during import. Please make sure there is no whitespace/newlines anywhere and the correct save encoding has been used.")
   }
+}
+
+copy.onclick = () => {
+  let copied = document.getElementById("blig").select()
+  document.execCommand('copy')
 }
