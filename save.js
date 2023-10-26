@@ -144,6 +144,7 @@ var copy = document.getElementById("copy")
 
 exp.onclick = () => {
   localStorage.setItem("playerdata", JSON.stringify(playerdata))
+  dialog("Your data has been saved")
   blig.value = LZString.compressToBase64(JSON.stringify(playerdata))
 }
 
