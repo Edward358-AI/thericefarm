@@ -11,7 +11,7 @@
 
 <body>
   <div id="startup">
-    <h1>Welcome to The Rice Farm. (v7.1.3 Beta)</h1>
+    <h1>Welcome to The Rice Farm. (v7.2.3)</h1>
     <p>Please provide us with your name:</p>
     <form id="name">
       <input type="text">
@@ -24,7 +24,10 @@
   <div id="game">
     <h3 id="welcomename">Welcome back, Peasant </h3>
     <p>notice: best for large windows</p>
-    <button id="???">?????</button><br>
+    <a href="landing.html" target="_blank"><button>learn more...</button></a><br>
+    <button style="display:none;margin: 0 auto;" id="showend" onclick="document.getElementById('ending').style.display = 'block'">show ending</button>
+
+    <br>
     <div id="xpBarContainer">
       <div id="xpLevel"></div>
       <div id="xpBar">
@@ -77,6 +80,7 @@
         <button>?????</button><br>
         <button>?????</button><br>
         <button>?????</button><br>
+        <button>?????</button><br>
       </div>
       <div class="achievestats">
         Achievements<br><br>
@@ -90,7 +94,7 @@
         <button id="delete" style="background-color:red">wipe all data</button><br>
         <button id="manualsave">(manually) save data</button><br>
         <button id="namechange">change name</button><br>
-        <button id="export">export</button><button id="import">import</button><button id="copy">copy text</button><br>
+        <button id="export">export</button><button id="import">import</button><br>
         <textarea id="blig"></textarea><br>
         <button onclick="alert(`Credits:
         The source code for this was developed by me, Edward Jiang. The original source of inspiration was from my friend, nicknamed Giuseppe, to make the rice farming aspect. The late game components were largely influenced by Liu Cixin's Three Body Problem series, Space Company (game by Sparticle999), and my physics teacher. Special kudos to @Dodge1 on replit for helping devise the XP bar solution! He is a fantastic person. Detailed credits can be found in many of the source files.`)">show credits</button><br>

@@ -268,7 +268,7 @@ body {
 @keyframes fadeoutother {from{opacity:1;}to{opacity: 0;}}
 @keyframes fadeinout {0% {opacity:1}50% {opacity: 0;}100%{opacity:1;}}
 @keyframes bigin {from{scale:2;}to{scale:1}}
-@keyframes shadowfade {0%{box-shadow: #000 0px 0px 0px;}50%{box-shadow: #000 0px 0px 10px;}100%{box-shadow: #000 0px 0px 0px;}1}
+@keyframes shadowfade {0%{box-shadow: #000 0px 0px 0px;}50%{box-shadow: #000 0px 0px 10px;}100%{box-shadow: #000 0px 0px 0px;}}
 @keyframes biginout {0%{scale:1;} 50%{scale:2;}100%{scale:1;}}
 
           #xpBarContainer {
@@ -324,5 +324,9 @@ body {
 }
 
 @keyframes flash {
-  0% {background-color:#0040ff;} 50% {background-color: #1438a3;} 100% {background-color:#0040ff;}
+  0% {background-color:#0040ff;} 
+  20% {background-color: #1438a3;} 
+  40% {background-color:#0040ff;} 
+  60% {background-color: #1438a3;} 
+  100% {background-color:#0040ff;}
 }

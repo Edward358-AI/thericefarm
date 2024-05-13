@@ -3,7 +3,7 @@
 if (localStorage.getItem("name")) {
   var farmerName = localStorage.getItem("name")
   formName.style.opacity = 0
-  startup.children[1].innerHTML = `Welcome back, Peasant ${farmerName}. Glad to see you here.`
+  startup.children[1].innerHTML = `Welcome back, Peasant ${farmerName}. Glad to see you here.<br>(Click to continue)`
   document.documentElement.addEventListener("click", function clicktocontinue() {
     startup.style.display = "none"
     game.style.display = "inline"
@@ -89,7 +89,7 @@ tiles.addEventListener("click", (e) => {
             harvestSeconds--
             e.target.innerHTML = each.type.toUpperCase() + " rice is growing!<br>Ready in " + harvestSeconds
           } else {
-            e.target.style.animation = "flash 1s"
+            e.target.style.animation = "flash 2s"
             e.target.innerHTML = each.type.toUpperCase() + " rice is ready!"
             e.target.addEventListener("click", function addrice() {
               if (playerdata.unlocked.brown[0] == true && each.type == "select" && chance(select.mutationChance)) {
