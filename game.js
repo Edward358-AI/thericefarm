@@ -124,11 +124,11 @@ tiles.addEventListener("click", (e) => {
                     gainXP(5, 7)
                   } else if (each.type == "gold") {
                     if (playerdata.unlocked.betterFert) {
-                      let temp = Math.ceil(each.cropYield * 2)
+                      let temp = Math.floor(each.cropYield * 2)
                       playerdata.goldRice += temp
                       playerdata.stats.goldRice += temp
                     } else {
-                      let temp = Math.ceil(each.cropYield * 1.5)
+                      let temp = Math.floor(each.cropYield * 1.5)
                       playerdata.goldRice += temp
                       playerdata.stats.goldRice += temp
                     }
