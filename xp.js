@@ -28,9 +28,9 @@ function levelUp() {
   playerdata.xpLevel = Math.min(playerdata.xpLevel + 1);
   playerdata.xp = 0
   document.getElementById('xpLevel').innerText = `${playerdata.xpLevel}`;
-  playerdata.money += 20*xpLevel
-  playerdata.stats.money += 20*xpLevel
-  dialog("Level Up! +" + 20*xpLevel + "元")
+  playerdata.money += 20*parseInt(xpLevel)
+  playerdata.stats.money += 20*parseInt(xpLevel)
+  dialog("Level Up! +" + 20*parseInt(xpLevel) + "元")
 }
 
 function updateXPBar() {
