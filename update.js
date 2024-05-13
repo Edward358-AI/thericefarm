@@ -1,5 +1,6 @@
 
 function update() {
+  localStorage.setItem("playerdata", JSON.stringify(playerdata))
   research.innerHTML =   `Research: ${playerdata.research}`
   riceAmount.innerHTML = `Rice: ${playerdata.rice}<br>Brown rice: ${playerdata.brownRice}<br>Gold rice: ${playerdata.goldRice}`
   moneyAmount.innerHTML = "Money: " + round2(playerdata.money) + "元"
