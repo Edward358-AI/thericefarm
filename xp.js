@@ -28,9 +28,32 @@ function levelUp() {
   playerdata.xpLevel = Math.min(playerdata.xpLevel + 1);
   playerdata.xp = 0
   document.getElementById('xpLevel').innerText = `${playerdata.xpLevel}`;
-  playerdata.stats.money += 30*playerdata.xpLevel
-  playerdata.money += 30*playerdata.xpLevel
-  dialog("Level Up! +" + 30*playerdata.xpLevel + "元")
+  if (playerdata.unlocked.research) {
+    if (playerdata.xpLevel % 10 === 0) {
+      playerdata.stats.money += 50*playerdata.xpLevel
+      playerdata.money += 50*playerdata.xpLevel
+      playerdata.stats.research += 50*playerdata.xpLevel
+      playerdata.research += 50*playerdata.xpLevel
+      dialog("Level Up! +" + 50*playerdata.xpLevel + "元 and research")
+    } else {
+      playerdata.stats.money += 30*playerdata.xpLevel
+      playerdata.money += 30*playerdata.xpLevel
+      playerdata.stats.research += 30*playerdata.xpLevel
+      playerdata.research += 30*playerdata.xpLevel
+      dialog("Level Up! +" + 30*playerdata.xpLevel + "元 and research")
+    }
+  } else {
+    if (playerdata.xpLevel % 10 === 0) {
+      playerdata.stats.money += 50*playerdata.xpLevel
+      playerdata.money += 50*playerdata.xpLevel
+      dialog("Level Up! +" + 50*playerdata.xpLevel + "元")
+    } else {
+      playerdata.stats.money += 30*playerdata.xpLevel
+      playerdata.money += 30*playerdata.xpLevel
+      dialog("Level Up! +" + 30*playerdata.xpLevel + "元")
+    }
+  }
+  
 }
 
 function updateXPBar() {
