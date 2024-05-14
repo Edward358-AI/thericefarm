@@ -98,10 +98,12 @@ tiles.addEventListener("click", (e) => {
                       let temp = Math.ceil(each.cropYield * 2)
                       playerdata.brownRice += temp
                       playerdata.stats.brownRice += temp
+                      playerdata.stats.rice += temp
                     } else {
                       let temp = Math.ceil(each.cropYield * 1.5)
                       playerdata.brownRice += temp
                       playerdata.stats.brownRice += temp
+                      playerdata.stats.rice += temp
                     }
                     gainXP(5, 7)
                   } else if (each.type == "gold") {
@@ -109,10 +111,12 @@ tiles.addEventListener("click", (e) => {
                       let temp = Math.ceil(each.cropYield * 2)
                       playerdata.goldRice += temp
                       playerdata.stats.goldRice += temp
+                      playerdata.stats.rice += temp
                     } else {
                       let temp = Math.ceil(each.cropYield * 1.5)
                       playerdata.goldRice += temp
                       playerdata.stats.goldRice += temp
+                      playerdata.stats.rice += temp
                     }
                     gainXP(7, 9)
                   } else {
@@ -133,11 +137,13 @@ tiles.addEventListener("click", (e) => {
                     let temp = each.cropYield
                     playerdata.brownRice += temp
                     playerdata.stats.brownRice += temp
+                    playerdata.stats.rice += temp
                     gainXP(5, 7)
                   } else if (each.type == "gold") {
                     let temp = each.cropYield
                     playerdata.goldRice += temp
                     playerdata.stats.goldRice += temp
+                    playerdata.stats.rice += temp
                     gainXP(7, 9)
                   } else {
                     let temp = each.cropYield
