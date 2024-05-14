@@ -129,11 +129,6 @@ if (localStorage.getItem("playerdata") && typeof JSON.parse(localStorage.getItem
   }
 }
 
-var autosave = setInterval(() => {
-  dialog("Your data has been autosaved")
-  localStorage.setItem("playerdata", JSON.stringify(playerdata))
-}, 30000)
-
 // the idea of base64 compression was a direct idea taken from Space Company (https://github.com/sparticle999/SpaceCompany)
 
 var imp = document.getElementById("import")
