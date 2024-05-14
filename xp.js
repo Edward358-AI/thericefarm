@@ -28,6 +28,18 @@ function levelUp() {
   playerdata.xpLevel = Math.min(playerdata.xpLevel + 1);
   playerdata.xp = 0
   document.getElementById('xpLevel').innerText = `${playerdata.xpLevel}`;
+  if (playerdata.unlocked.brown[0]) {
+    brown.success *= 1.01
+    if (brown.success > 1) {
+      brown.success = 1
+    }
+  }
+  if (playerdata.unlocked.gold[0]) {
+    gold.success *= 1.05
+    if (gold.success > 1) {
+      gold.success = 1
+    }
+  }
   if (playerdata.unlocked.research) {
     if (playerdata.xpLevel % 5 === 0) {
       playerdata.stats.money += 100*playerdata.xpLevel

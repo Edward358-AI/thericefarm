@@ -57,10 +57,7 @@ Object.defineProperties(Array.prototype, {
 });
 // the array chances has 2048 individual items—a reference to the game '2048', and the max reward is 2048
 var chances = [2048]
-for (let i = 0; i < 12; i++) {
-  chances.push(0)
-}
-for (let i = 0; i < 40; i++) {
+for (let i = 0; i < 52; i++) {
   chances.push(1)
 }
 for (let i = 0; i < 1924; i++) {
@@ -89,28 +86,34 @@ shuffle(chances)
 
 
 class Rice {
-  constructor(type, seconds, extra, using, mutationChance) {
+  constructor(type, seconds, extra, using, mutationChance, success) {
     this.type = type
     this.seconds = seconds
     this.extra = extra
     this.using = using
     this.mutationChance = mutationChance
+    this.success = success
   }
   get cropYield() {
     return this.calcYield()
   }
   calcYield() {
-    let total = chances[Math.floor(Math.random() * chances.length)] + this.extra
-    while (total < 0) {
-      total = chances[Math.floor(Math.random() * chances.length)] + this.extra
+    if (chance(success)) {
+      let total = chances[Math.floor(Math.random() * chances.length)] + this.extra
+      while (total < 0) {
+        total = chances[Math.floor(Math.random() * chances.length)] + this.extra
+      }
+      return total
+    } else {
+      dialog("Crop failure!")
+      return 0
     }
-    return total
   }
 }
 
 
-var plain = new Rice("plain", 5, 0, false)
-var select = new Rice("select", 7, 4, false, 0.15)
-var brown = new Rice("brown", 9, 2, false, 0.015)
-var gold = new Rice("gold", 11, -1, false)
+var plain = new Rice("plain", 5, 0, false, 1)
+var select = new Rice("select", 7, 4, false, 0.15, 1)
+var brown = new Rice("brown", 9, 2, false, 0.015, 0.9)
+var gold = new Rice("gold", 11, -1, false, 0.2)
 var rices = [plain, select, brown, gold]
