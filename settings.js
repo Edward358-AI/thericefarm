@@ -15,7 +15,7 @@ deleteData.addEventListener("click", function deleteThingy() {
     clearInterval(updateStorage)
     alert("Your data was successfully cleared.")
     localStorage.clear()
-    window.location = window.location
+    window.location.reload()
   } else {
     alert("Your data was not cleared.")
   }
