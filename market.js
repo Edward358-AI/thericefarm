@@ -55,7 +55,7 @@ shop[0].addEventListener("click", function buyPlain() {
 
 shop[2].addEventListener("click", function tradee() {
   if (playerdata.unlocked.brown[1] == true) {
-    if (playerdata.selectSeeds > 10) {let howMuch = prompt("How many BROWN SEEDS would you like to trade for? 5 select = 1 brown")
+    if (playerdata.selectSeeds >= 5) {let howMuch = prompt("How many BROWN SEEDS would you like to trade for? 5 select = 1 brown")
     if (Number.isInteger(parseFloat(howMuch))) {
       if (parseInt(howMuch) * 5 > playerdata.selectSeeds || parseInt(howMuch) < 1) {
         alert("Error! Please try again.")
