@@ -11,11 +11,10 @@ changename.addEventListener("click", () => {
 
 deleteData.addEventListener("click", function deleteThingy() {
   let wantToDelete = confirm("WARNING! You are now about to delete all your data associated with this game. Click OK to continue, and if you didn't mean to do this, click Cancel.")
-  if (wantToDelete === true) {
-    clearInterval(updateStorage)
+  if (wantToDelete == true) {
     alert("Your data was successfully cleared.")
     localStorage.clear()
-    window.location.reload()
+    window.location = window.location
   } else {
     alert("Your data was not cleared.")
   }
