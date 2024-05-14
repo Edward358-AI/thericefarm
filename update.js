@@ -35,16 +35,28 @@ function update() {
     choosing.children[2].disabled = false
   } else {
     choosing.children[2].disabled = true
+    if (select.using == true) {
+      select.using = false
+      choosing.value = "noselect"
+    }
   }
   if (playerdata.unlocked.brown[0] == true && playerdata.brownSeeds > 0) {
     choosing.children[3].disabled = false
   } else {
     choosing.children[3].disabled = true
+    if (brown.using == true) {
+      brown.using = false
+      choosing.value = "noselect"
+    }
   }
   if (playerdata.unlocked.gold[0] == true && playerdata.goldSeeds > 0) {
     choosing.children[4].disabled = false
   } else {
     choosing.children[4].disabled = true
+    if (gold.using == true) {
+      gold.using = false
+      choosing.value = "noselect"
+    }
   }
   if (playerdata.stats.sold >= 500 && playerdata.unlocked.select == false) {
     dialog("Select seeds unlocked!")
