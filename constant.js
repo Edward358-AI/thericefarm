@@ -98,7 +98,7 @@ class Rice {
     return this.calcYield()
   }
   calcYield() {
-    if (chance(success)) {
+    if (chance(this.success)) {
       let total = chances[Math.floor(Math.random() * chances.length)] + this.extra
       while (total < 0) {
         total = chances[Math.floor(Math.random() * chances.length)] + this.extra
