@@ -44,9 +44,9 @@ function levelUp() {
     }
   } else {
     if (playerdata.xpLevel % 5 === 0) {
-      playerdata.stats.money += 50*playerdata.xpLevel
-      playerdata.money += 50*playerdata.xpLevel
-      dialog("Level Up! +" + 50*playerdata.xpLevel + "元")
+      playerdata.stats.money += 100*playerdata.xpLevel
+      playerdata.money += 100*playerdata.xpLevel
+      dialog("Level Up! +" + 100*playerdata.xpLevel + "元")
     } else {
       playerdata.stats.money += 30*playerdata.xpLevel
       playerdata.money += 30*playerdata.xpLevel
