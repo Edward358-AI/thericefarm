@@ -42,32 +42,12 @@ tiles.addEventListener("click", (e) => {
         e.target.style.backgroundColor = "#0040ff"
         if (each.type == "select") {
           playerdata.selectSeeds--
-          if (playerdata.selectSeeds == 0) {
-            choosing.children[2].disabled = true
-            select.using = false
-            choosing.value = "noselect"
-          }
         } else if (each.type == "brown") {
           playerdata.brownSeeds--
-          if (playerdata.brownSeeds == 0) {
-            choosing.children[3].disabled = true
-            brown.using = false
-            choosing.value = "noselect"
-          }
         } else if (each.type == "gold") {
           playerdata.goldSeeds--
-          if (playerdata.goldSeeds == 0) {
-            choosing.children[4].disabled = true
-            gold.using = false
-            choosing.value = "noselect"
-          }
         } else {
           playerdata.seeds--
-          if (playerdata.seeds == 0) {
-            choosing.children[1].disabled = true
-            plain.using = false
-            choosing.value = "noselect"
-          }
         }
         let usedFert = false
         playerdata.water--
