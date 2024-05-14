@@ -1,6 +1,6 @@
 sellRice.addEventListener("click", function sell() {
   let total = playerdata.rice + playerdata.brownRice + playerdata.goldRice
-  let sold = playerdata.rice + playerdata.brownRice * 5 + playerdata.goldRice * 100
+  let sold = playerdata.rice + playerdata.brownRice * 10 + playerdata.goldRice * 100
   playerdata.money += sold
   playerdata.stats.money += sold
   playerdata.stats.sold += total
