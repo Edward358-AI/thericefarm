@@ -29,12 +29,12 @@ function levelUp() {
   playerdata.xp = 0
   document.getElementById('xpLevel').innerText = `${playerdata.xpLevel}`;
   if (playerdata.unlocked.research) {
-    if (playerdata.xpLevel % 10 === 0) {
-      playerdata.stats.money += 50*playerdata.xpLevel
-      playerdata.money += 50*playerdata.xpLevel
+    if (playerdata.xpLevel % 5 === 0) {
+      playerdata.stats.money += 100*playerdata.xpLevel
+      playerdata.money += 100*playerdata.xpLevel
       playerdata.stats.research += 50*playerdata.xpLevel
       playerdata.research += 50*playerdata.xpLevel
-      dialog("Level Up! +" + 50*playerdata.xpLevel + "元 and research")
+      dialog("Level Up! +" + 100*playerdata.xpLevel + "元 and " + 50*playerdata.xpLevel + " research")
     } else {
       playerdata.stats.money += 30*playerdata.xpLevel
       playerdata.money += 30*playerdata.xpLevel
@@ -43,7 +43,7 @@ function levelUp() {
       dialog("Level Up! +" + 30*playerdata.xpLevel + "元 and research")
     }
   } else {
-    if (playerdata.xpLevel % 10 === 0) {
+    if (playerdata.xpLevel % 5 === 0) {
       playerdata.stats.money += 50*playerdata.xpLevel
       playerdata.money += 50*playerdata.xpLevel
       dialog("Level Up! +" + 50*playerdata.xpLevel + "元")
