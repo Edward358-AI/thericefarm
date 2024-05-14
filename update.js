@@ -28,15 +28,23 @@ function update() {
   }
   if (playerdata.seeds > 0) {
     choosing.children[1].disabled = false
+  } else {
+    choosing.children[1].disabled = true
   }
   if (playerdata.unlocked.select == true && playerdata.selectSeeds > 0) {
     choosing.children[2].disabled = false
+  } else {
+    choosing.children[2].disabled = true
   }
   if (playerdata.unlocked.brown[0] == true && playerdata.brownSeeds > 0) {
     choosing.children[3].disabled = false
+  } else {
+    choosing.children[3].disabled = true
   }
   if (playerdata.unlocked.gold[0] == true && playerdata.goldSeeds > 0) {
     choosing.children[4].disabled = false
+  } else {
+    choosing.children[4].disabled = true
   }
   if (playerdata.stats.sold >= 500 && playerdata.unlocked.select == false) {
     dialog("Select seeds unlocked!")
