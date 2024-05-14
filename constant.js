@@ -111,6 +111,6 @@ class Rice {
 
 var plain = new Rice("plain", 5, 0, false)
 var select = new Rice("select", 7, 4, false, 0.15)
-var brown = new Rice("brown", 9, 3, false, 0.015)
+var brown = new Rice("brown", 9, 5, false, 0.015)
 var gold = new Rice("gold", 11, -1, false)
 var rices = [plain, select, brown, gold]
