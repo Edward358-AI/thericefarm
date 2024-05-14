@@ -98,7 +98,7 @@ class Rice {
     return this.calcYield()
   }
   calcYield() {
-    if (chance(this.success) || this.success == 1) {
+    if (chance(this.success)) {
       let total = chances[Math.floor(Math.random() * chances.length)] + this.extra
       while (total < 0) {
         total = chances[Math.floor(Math.random() * chances.length)] + this.extra
@@ -112,7 +112,7 @@ class Rice {
 }
 
 
-var plain = new Rice("plain", 5, 0, false, 1)
+var plain = new Rice("plain", 5, 0, false, 0, 1)
 var select = new Rice("select", 7, 4, false, 0.15, 1)
 var brown = new Rice("brown", 9, 2, false, 0.015, 0.9)
 var gold = new Rice("gold", 11, -1, false, 0.2)
