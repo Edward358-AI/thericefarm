@@ -79,6 +79,7 @@ tiles.addEventListener("click", (e) => {
                 playerdata.stats.brownSeeds++
                 if (playerdata.unlocked.research) {
                   playerdata.research++
+                  playerdata.stats.research++
                 }
                 gainXP(7, 9)
               } else if (playerdata.unlocked.gold[0] == true && each.type == "brown" && chance(brown.mutationChance)) {
@@ -88,6 +89,7 @@ tiles.addEventListener("click", (e) => {
                 playerdata.stats.goldSeeds++
                 if (playerdata.unlocked.research) {
                   playerdata.research += 2
+                  playerdata.stats.research += 2
                 }
               } else {
                 if (usedFert) {
@@ -147,6 +149,7 @@ tiles.addEventListener("click", (e) => {
               }
               if (playerdata.unlocked.research) {
                 playerdata.research++
+                playerdata.stats.research++
               }
               e.target.removeEventListener("click", addrice)
               e.target.innerHTML = "Preparing soil for next crop! Please wait..."
