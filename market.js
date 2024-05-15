@@ -81,26 +81,25 @@ shop[2].addEventListener("click", function tradee() {
 
 shop[8].addEventListener("click", function buyland() {
   if (playerdata.xpLevel >= 5) {
-    if (playerdata.money >= 350) {
+    if (playerdata.money >= 1000) {
       if (playerdata.tiles < 9) {
-        let yesland = confirm("Are you sure you want to buy a plot of land for 350元? Press ok to proceed...")
+        let yesland = confirm("Are you sure you want to buy a plot of land for 1000元? Press ok to proceed...")
     if (yesland) {
-      alert("A plot of land purchased for 350元.")
+      alert("A plot of land purchased for 1000元.")
       playerdata.tiles += 1
       playerdata.stats.tiles += 1
-      playerdata.money -= 350
-      playerdata.stats.spent += 350
+      playerdata.money -= 1000
+      playerdata.stats.spent += 1000
       gainXP(5, 7)
-      
       updateTiles()
     } else {
       alert("Land purchase cancelled.")
     }
       } else {
-        alert("Max amount of land purchased!")
+        alert("Already purchased max farmlands!")
       }
     } else {
-      alert("Not enough money! Need 350元.")
+      alert("Not enough money! Need 1000元.")
     }
   } else {
     alert("Not unlocked yet!")

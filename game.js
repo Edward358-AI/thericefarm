@@ -57,7 +57,7 @@ tiles.addEventListener("click", (e) => {
           } else {
             var harvestSeconds = each.seconds - 3
           }
-          playerdata.fertile--
+          playerdata.fertile -= Math.floor(Math.random() * (5-1) + 1)
           usedFert = true
         } else {
           var harvestSeconds = each.seconds
