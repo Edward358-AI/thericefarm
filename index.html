@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- the skeleton, or base of the rice farming game -->
+<!-- The Rice Farm - A rice farming incremental game -->
 
 <head>
   <meta charset="utf-8">
@@ -19,13 +19,16 @@
     </form>
   </div>
   <div id="introduction">
-    
+
   </div>
   <div id="game">
     <h3 id="welcomename">Welcome back, Peasant </h3>
     <p>notice: best for large windows</p>
-    <a href="landing.html" target="_blank"><button>learn more...</button></a><br>
-    <button style="display:none;margin: 0 auto;" id="showend" onclick="document.getElementById('ending').style.display = 'block'">show ending</button>
+    <a href="landing.html" target="_blank"><button>learn more...</button></a>
+    <span id="rankDisplay" style="margin-left: 10px; font-weight: bold; color: gold;"></span>
+    <br>
+    <button style="display:none;margin: 0 auto;" id="showend"
+      onclick="document.getElementById('ending').style.display = 'block'">show ending</button>
 
     <br>
     <div id="xpBarContainer">
@@ -46,10 +49,11 @@
     <div id="stats">
       <p>Seeds left: </p><select id="choosing">
         <option value="noselect">Not selected</option>
-        <option value="plain">Plain</option>
-        <option value="select" disabled>Select</option>
+        <option value="regular">Regular</option>
+        <option value="better" disabled>Better</option>
         <option value="brown" disabled>Brown</option>
         <option value="gold" disabled>Gold</option>
+        <option value="true" disabled>True</option>
       </select>
       <p id="water">Water left: </p>
       <p id="money">Money: 元</p>
@@ -64,48 +68,145 @@
       <div id="funbuttons">
         <button class="funactive" onclick="show(this)" id="0">Market</button>
         <button onclick="show(this)" id="1">Research</button>
-        <button onclick="show(this)" id="2">Achievements/Stats</button>
-        <button onclick="show(this)" id="3">Settings</button></div>
+        <button onclick="show(this)" id="2">Achievements</button>
+        <button onclick="show(this)" id="3">Stats</button>
+        <button onclick="show(this)" id="4">Settings</button>
+      </div>
       <span id="tabs">
-      <div class="shop" id="activetab">
-        <button>Buy rice seeds</button><br>
-        <button>???????</button><br>
-        <button>Buy water</button><br>
-        <button>Buy fertilizer</button><br>
-        <button>???????</button><br>
-      </div>
-      <div class="science">
-        <button>?????</button><br>
-        <button>?????</button><br>
-        <button>?????</button><br>
-        <button>?????</button><br>
-        <button>?????</button><br>
-        <button>?????</button><br>
-      </div>
-      <div class="achievestats">
-        Achievements<br><br>
-        <div>
-        </div><br><br>
-        Player Stats
-        <div>
+        <div class="shop" id="activetab">
+          <button>Buy rice seeds</button><br>
+          <button>???????</button><br>
+          <button>Buy water</button><br>
+          <button>Buy fertilizer</button><br>
+          <button>???????</button><br>
+          <button>???????</button><br>
+          <button>???????</button><br>
         </div>
-      </div>
-      <div class="settingz">
-        <button id="delete" style="background-color:red">wipe all data</button><br>
-        <button id="manualsave">(manually) save data</button><br>
-        <button id="namechange">change name</button><br>
-        <button id="export">export</button><button id="import">import</button><br>
-        <textarea id="blig"></textarea><br>
-        <button onclick="alert(`Credits:
-        The source code for this was developed by me, Edward Jiang. The original source of inspiration was from my friend, nicknamed Giuseppe, to make the rice farming aspect. The late game components were largely influenced by Liu Cixin's Three Body Problem series, Space Company (game by Sparticle999), and my physics teacher. Special kudos to @Dodge1 on replit for helping devise the XP bar solution! He is a fantastic person. Detailed credits can be found in many of the source files.`)">show credits</button><br>
-        <button
-          onclick="alert('Remember to download a new version occasionally for newest updates!');window.open('https://github.com/Edward358-AI/thericefarm/archive/refs/heads/main.zip', '_blank')">Offline
-          version download</button>
-        <button onclick="window.open('mailto:edward456jiang@gmail.com', '_blank')">Questions? Comments? Bugs?</button>
-      </div>
+        <div class="science">
+          <!-- Brown Mutation Research -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Brown Success Research -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Gold Mutation Research -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Gold Success Research -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Better Fertilizer Research -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Brown Mutation Switch (OTP) -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Gold Mutation Switch (OTP) -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- True->Brown Mutation Switch (OTP) -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- True->Gold Mutation Switch (OTP) -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Better Regular seeds yield research -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Better Better seeds yield research -->
+          <div class="science-item">
+            <button>?????</button>
+            <span>?????</span>
+          </div>
+          <!-- Mutation Switch Toggles Section -->
+          <div class="mutation-switches-section">
+            <div class="switches-header">🔀 Mutation Switches</div>
+            <div class="switch-item">
+              <label class="switch-label">
+                <input type="checkbox" id="toggleBrnSwitch" disabled>
+                <span class="switch-slider"></span>
+                <span class="switch-text">Better → Brown</span>
+              </label>
+              <span class="switch-status" id="brnSwitchStatus">🔒 Locked</span>
+            </div>
+            <div class="switch-item">
+              <label class="switch-label">
+                <input type="checkbox" id="toggleGoldSwitch" disabled>
+                <span class="switch-slider"></span>
+                <span class="switch-text">Brown → Gold</span>
+              </label>
+              <span class="switch-status" id="goldSwitchStatus">🔒 Locked</span>
+            </div>
+            <div class="switch-item">
+              <label class="switch-label">
+                <input type="checkbox" id="toggleTrueBrnSwitch" disabled>
+                <span class="switch-slider"></span>
+                <span class="switch-text">True → Brown</span>
+              </label>
+              <span class="switch-status" id="trueBrnSwitchStatus">🔒 Locked</span>
+            </div>
+            <div class="switch-item">
+              <label class="switch-label">
+                <input type="checkbox" id="toggleTrueGoldSwitch" disabled>
+                <span class="switch-slider"></span>
+                <span class="switch-text">True → Gold</span>
+              </label>
+              <span class="switch-status" id="trueGoldSwitchStatus">🔒 Locked</span>
+            </div>
+          </div>
+        </div>
+        <div class="achievements">
+          <div class="achieve-section-title main-section-title">🏆 Achievements</div>
+          <div id="achievementsContent">
+          </div>
+        </div>
+        <div class="playerstats">
+          <div class="achieve-section-title main-section-title">📊 Player Stats</div>
+          <div id="statsContent">
+          </div>
+        </div>
+        <div class="settingz">
+          <button id="delete" style="background-color:red">wipe all data</button><br>
+          <button id="manualsave">(manually) save data</button><br>
+          <button id="namechange">change name</button><br>
+          <button id="export">export</button><button id="import">import</button><br>
+          <textarea id="blig"></textarea><br>
+          <br>
+          <button
+            onclick="alert(`Credits:
+        The source code for this was developed by me, Edward Jiang. The original source of inspiration was from my friend, nicknamed Giuseppe, to make the rice farming aspect. Special kudos to @Dodge1 on replit for helping devise the XP bar solution! He is a fantastic person. Detailed credits can be found in many of the source files.`)">show
+            credits</button><br>
+          <button
+            onclick="alert('Remember to download a new version occasionally for newest updates!');window.open('https://github.com/Edward358-AI/thericefarm/archive/refs/heads/main.zip', '_blank')">Offline
+            version download</button>
+          <button onclick="window.open('mailto:edward456jiang@gmail.com', '_blank')">Questions? Comments? Bugs?</button>
+        </div>
       </span>
     </div>
     <div id="tiles">
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
+      <button class="tile">Empty soil</button>
       <button class="tile">Empty soil</button>
       <button class="tile">Empty soil</button>
       <button class="tile">Empty soil</button>
@@ -121,6 +222,7 @@
   <script src="object-observe.js"></script>
   <script src="lzstring.js"></script>
   <script src="constant.js"></script>
+  <script src="modal.js"></script>
   <script src="save.js"></script>
   <script src="update.js"></script>
   <script src="market.js"></script>
@@ -131,20 +233,64 @@
   <script src="game.js"></script>
   <script>
     function show(item) {
-      let a = document.getElementsByClassName("funactive")[0]
-      let b = document.getElementById("tabs")
-      b.children[a.id].removeAttribute("id")
-      b.children[item.id].id = "activetab"
-      a.classList.remove("funactive")
-      item.classList.add("funactive")
+      // Update tab buttons
+      let a = document.getElementsByClassName("funactive")[0];
+      let b = document.getElementById("tabs");
+      if (a) {
+        b.children[a.id].removeAttribute("id");
+        a.classList.remove("funactive");
+      }
+      b.children[item.id].id = "activetab";
+      item.classList.add("funactive");
+
+      // Update tab content visibility
+      const tabs = ["shop", "science", "achievements", "playerstats", "settingz"];
+      const mapping = {
+        "0": "shop",
+        "1": "science",
+        "2": "achievements",
+        "3": "playerstats",
+        "4": "settingz"
+      };
+
+      // Hide all tabs
+      for (let tabClass of tabs) {
+        let element = document.getElementsByClassName(tabClass)[0];
+        if (element) element.style.display = "none";
+      }
+
+      // Show selected tab
+      let activeClass = mapping[item.id];
+      if (activeClass) {
+        let element = document.getElementsByClassName(activeClass)[0];
+        if (element) {
+          if (activeClass === "science") {
+            element.style.display = "flex"; // Science uses flex column
+          } else {
+            element.style.display = "block";
+          }
+        }
+      }
     }
   </script>
 </body>
-<div id="ending" style="height:100%;width:100%;background-size: cover;background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,14,74,1) 57%, rgba(18,18,84,1) 100%);color: cyan;z-index: 999;font-family: Onest, sans-serif;position:absolute;text-align:center;display:flex;animation:fadein 5s linear;display:none;" onclick="this.style.display = 'none'">
+<div id="ending"
+  style="height:100%;width:100%;background-size: cover;background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,14,74,1) 57%, rgba(18,18,84,1) 100%);color: cyan;z-index: 999;font-family: Onest, sans-serif;position:absolute;text-align:center;display:flex;animation:fadein 5s linear;display:none;"
+  onclick="this.style.display = 'none'">
   <span style="margin:auto;">
-    <h1>Congratulations.</h1>
-    <h3>You have reached the end of the game.</h3>
-    <p>This is the end of a journey of a lifetime. What felt like days of grinding and playing has been compressed into one small little game. Yet time passes by so quickly, leaving us with no time to spare. You have proven to the stars and yourself, that the only true limitation is ourselves. What we perceive as impossible is only impossible in our imagination. You see, the reason why our brainpower is limited its because it limits itself. To be able to think freely and turn those thoughts into tangible reality would be the ultimate end goal. Will humanity ever reach this ultimate goal, I will never know. But starting with you, you can strive toward it. Instead of giving yourself to time itself, give that time to yourself. Only you will truly benefit from it, and that's what matters. These are some words left by the stars. I thought you might wanted to read it. Now, farewell. You can revisit this message anytime you'd like.</p>
+    <h1>Congratulations, True Rice Farmer.</h1>
+    <h3>You have reached the pinnacle of rice farming.</h3>
+    <p>Level 100. The ultimate goal has been achieved. What started as a humble peasant with 10 seeds has blossomed into
+      a legendary farmer. You have mastered the art of regular rice, unlocked the secrets of better seeds, discovered
+      the mutations of brown rice, obtained the rare gold rice, and finally achieved True Rice - the ultimate expression
+      of farming mastery.</p>
+    <p>Remember: A true rice farmer doesn't need any benefits. The journey itself was the reward. The countless
+      harvests, the careful research, the patient grinding - all of it has led to this moment.</p>
+    <p>But perhaps this is not the end. Perhaps there are more rice fields to cultivate, more achievements to unlock,
+      more heights to reach. The stars continue to watch over your farm, and your legacy as a True Rice Farmer will echo
+      through the ages.</p>
+    <p><i>Thank you for playing The Rice Farm.</i></p>
   </span>
 </div>
+
 </html>

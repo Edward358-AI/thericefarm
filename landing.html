@@ -1,32 +1,384 @@
-<style>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>The Rice Farm - Guide</title>
+  <style>
     @import url('https://fonts.googleapis.com/css2?family=Onest&display=swap');
-  
-    html {
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
       width: 100%;
-      height: 100%;
-      background-size: cover;
-      background: rgb(2,0,36);
-      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,14,74,1) 57%, rgba(18,18,84,1) 100%);
-      color: cyan;
-      text-align: center;
+      min-height: 100%;
+      margin: 0;
+      padding: 20px;
+      background: rgb(2, 0, 36);
+      background: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(14, 14, 74, 1) 50%, rgba(18, 18, 84, 1) 100%);
+      color: #00ffff;
       font-family: Onest, sans-serif;
     }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.2em;
+      color: gold;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #ffcc00;
+      border-bottom: 2px solid #ffcc00;
+      padding-bottom: 10px;
+      margin-top: 40px;
+    }
+
+    h3 {
+      color: #88ff88;
+      margin-top: 25px;
+    }
+
+    p,
+    li {
+      line-height: 1.7;
+      color: #ccffff;
+    }
+
+    .highlight {
+      color: gold;
+      font-weight: bold;
+    }
+
+    .rank {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 5px;
+      margin: 2px;
+      font-weight: bold;
+    }
+
+    .rank-amateur {
+      background: #555;
+      color: #ccc;
+    }
+
+    .rank-beginner {
+      background: #2d5a3d;
+      color: #8fbc8f;
+    }
+
+    .rank-average {
+      background: #3d5a8a;
+      color: #87ceeb;
+    }
+
+    .rank-advanced {
+      background: #5a3d8a;
+      color: #dda0dd;
+    }
+
+    .rank-pro {
+      background: #8a5a3d;
+      color: #ffa500;
+    }
+
+    .rank-expert {
+      background: #8a3d5a;
+      color: #ff69b4;
+    }
+
+    .rank-true {
+      background: linear-gradient(45deg, gold, orange);
+      color: #000;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #336;
+    }
+
+    th {
+      background: rgba(0, 100, 150, 0.3);
+      color: gold;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(0, 50, 100, 0.2);
+    }
+
+    .tip {
+      background: rgba(0, 150, 100, 0.2);
+      border-left: 4px solid #00ff88;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .warning {
+      background: rgba(150, 100, 0, 0.2);
+      border-left: 4px solid #ffaa00;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    ul {
+      padding-left: 25px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
   </style>
-  <title>Welcome!</title>
-  <h1>Welcome.</h1>
-  <h3>Backstory</h3>
-  <p>
-    The universe is collapsing. More importantly, your galaxy is collapsing. And you are stuck in the middle of it. You need a ship with an extremely advanced and powerful propulsion system to escape to the outer reaches and begin your journey once again. However, you are just a lowly rice farmer. How far could you possible get? So far, no one in the universe has succeeded in the researching of this propulsion system. Will be the first to ascend to the top? I don't know. The stars await an answer. And you are the only one who can provide it to them. So, go farming, Peasant, and we shall meet again soon.
-  </p>
-  <h3>Getting Started</h3>
-  <p>
-    To get started, you'll need some simple supplies to begin farming your way up to the top. You are given a small amount of rice, water, fertilizer, and money. You must build your way up to the top via farming, harvesting, and trading. To farm, you must click on the tile. To harvest, you must click on the tile again, after it is ready. There is a market ready for you to sell, buy, and possibly trade things. Our currency is yuan. We wouldn't have it any other way.<br>You may have noticed the different types of rice that exist. There exists to be plain rice, which is what everyone starts with. Select rice, which is an unstable type of rice that produces plain rice upon harvest, but in much larger quantities. If you are advanced enough, it may also mutate into a different type of rice, called brown rice. Brown rice produces its own unique type of rice, which sells for a much higher price than plain rice. You may also notice it doesn't have a 100% success rate upon harvest. Like its unstable cousin, brown rice can also mutate into gold rice, which is highly valued on the market, but also so unstable that its success rate is less than half. Hopefully this bit of information has assisted you on your journey.
-  </p>
-  <h3>Mid-game</h3>
-  <p>
-    (At XP level 20...) So we meet again. I actually didn't think you would make it this far. You have come a long way from your humble beginnings, as a tiny little peasant, with a tiny bit of land and supplies. Yet time runs low. Your galaxy is still collapsing. You must now accept your fate and begin the research phase. You have acquired the skill of collecting research as you farm, and gaining powerful and useful knowledge. Good luck. You'll need this research. Before you lies three huge steps that you must take to reach your final end goal. A unique award awaits you at the end of each stage.<br>Step 1: Before you can start working on the propulsion system, you'll need to learn basic physics and mechanics. These sets of experiments and concepts will require you 10,000 research and 10,000元.<br>Step 2: I know you are excited to continue, but you must now learn the concept of nuclear propulsion. It is rather powerful and useful in many facets, but is rather primitive in the speed category. Still, it is an important concept to know about, and you'll need it later on. To acquire this, you will need 100,000 research, 100,000元, and 100,000 select rice seeds, for the select rice is said to be extremely unstable (it's still safe to eat though).<br>Step 3: This is the final and most important step. You will now learn that the universe contains dimensions beyond the thinkable. You will learn to (literally) bend and distort these dimensions and use that to your advantage. This is the concept of curvature propulsion (a term coined by Liu Cixin), and this will require a grand cost of 1 million rice. In addition, it will also cost you 1,000,000 research (to actually figure out how it works), 1,000,000元 (for ship materials), 100,000 brown rice seeds, and 10 gold seeds to finish the final step.
-  </p>
-  <h3>Other Uses of Research</h3>
-  <p>
-    Your research is not only limited to researching curvature propulsion. You can also use it to advance your own farming. For example, for 5,000 select seeds and 5,000 research, you can increase the amount of brown mutations you get when using select seeds. For 10,000 brown rice seeds and 10,000 research, you can increase the amount of gold mutations that happen when using brown seeds. The technology for a more powerful fertilizer can be unlocked with 20,000 research and 20,000 fertilizer. Hope this will assist you in your journey to finally building that ship.
-  </p>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🌾 The Rice Farm 🌾</h1>
+    <p class="subtitle">The Ultimate Goal: Reach Level 100 and become a <span class="rank rank-true">True Rice
+        Farmer</span></p>
+
+    <h2>📖 Your Journey Begins</h2>
+    <p>
+      You start as a humble <span class="rank rank-amateur">Amateur</span> farmer with just 10 seeds, 10 water, and 10
+      yuan.
+      Through dedication, strategic farming, and smart investments, you will climb the ranks from peasant to legend.
+      The path is long—100 levels stand between you and the title of <span class="rank rank-true">True Rice
+        Farmer</span>.
+      Are you ready to cultivate greatness?
+    </p>
+
+    <h2>🌱 Getting Started</h2>
+    <p>
+      Farming is simple: select a seed type, click on an empty tile, wait for it to grow, then harvest.
+      Each harvest yields rice that you can sell for yuan. Use your yuan to buy more seeds, water, fertilizer, and
+      eventually land.
+    </p>
+
+    <div class="tip">
+      <strong>💡 Tip:</strong> Turn on fertilizer in the stats panel to reduce grow time and increase yield.
+      It uses 1-2 fertilizer per plant, so stock up!
+    </div>
+
+    <h2>🍚 Rice Types</h2>
+    <table>
+      <tr>
+        <th>Type</th>
+        <th>Grow Time</th>
+        <th>Yield</th>
+        <th>Sell Price</th>
+        <th>Success Rate</th>
+        <th>Special</th>
+      </tr>
+      <tr>
+        <td><strong>Regular</strong></td>
+        <td>5s</td>
+        <td>Base</td>
+        <td>1元</td>
+        <td>100%</td>
+        <td>Starting seed</td>
+      </tr>
+      <tr>
+        <td><strong>Better</strong></td>
+        <td>7s</td>
+        <td>+4</td>
+        <td>1元</td>
+        <td>100%</td>
+        <td>Can mutate to Brown</td>
+      </tr>
+      <tr>
+        <td><strong>Brown</strong></td>
+        <td>9s</td>
+        <td>+2</td>
+        <td>9元</td>
+        <td>90%</td>
+        <td>Can mutate to Gold</td>
+      </tr>
+      <tr>
+        <td><strong>Gold</strong></td>
+        <td>11s</td>
+        <td>½ base</td>
+        <td>1000元</td>
+        <td>20%</td>
+        <td>Extremely valuable!</td>
+      </tr>
+      <tr>
+        <td><strong style="color: gold;">True</strong></td>
+        <td>4s</td>
+        <td>+50</td>
+        <td>1元</td>
+        <td>100%</td>
+        <td>2× mutation rate, 2× research</td>
+      </tr>
+    </table>
+
+    <div class="warning">
+      <strong>⚠️ Note:</strong> Mutations only occur if you've purchased the mutation switch AND turned it on in
+      Settings!
+    </div>
+
+    <h2>📈 Farmer Ranks</h2>
+    <p>As you level up, you'll progress through 7 farmer ranks, each with unique rewards and benefits:</p>
+
+    <table>
+      <tr>
+        <th>Rank</th>
+        <th>Levels</th>
+        <th>Rewards</th>
+        <th>Benefits</th>
+      </tr>
+      <tr>
+        <td><span class="rank rank-amateur">Amateur</span></td>
+        <td>0-9</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="rank rank-beginner">Beginner</span></td>
+        <td>10-19</td>
+        <td>+2,000元, 1,000 fertilizer</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="rank rank-average">Average</span></td>
+        <td>20-29</td>
+        <td>+5,000元, 2,000 fertilizer, 100 better seeds</td>
+        <td>+5% better seed chance in market</td>
+      </tr>
+      <tr>
+        <td><span class="rank rank-advanced">Advanced</span></td>
+        <td>30-49</td>
+        <td>+10,000元, 1,000 research, 1,000 better seeds</td>
+        <td>+1 crop yield on all harvests</td>
+      </tr>
+      <tr>
+        <td><span class="rank rank-pro">Pro</span></td>
+        <td>50-69</td>
+        <td>+100,000元, 10,000 research, 10,000 brown seeds</td>
+        <td>2× XP and 2× research gained</td>
+      </tr>
+      <tr>
+        <td><span class="rank rank-expert">Expert</span></td>
+        <td>70-99</td>
+        <td>+500,000元, 50,000 research, 10 gold seeds</td>
+        <td>Market prices don't fluctuate</td>
+      </tr>
+      <tr>
+        <td><span class="rank rank-true">True</span></td>
+        <td>100+</td>
+        <td>+10,000,000元, 200,000 research, 50 gold seeds, 1B regular seeds</td>
+        <td>A true farmer needs no benefits</td>
+      </tr>
+    </table>
+
+    <h2>🔓 Level Unlocks</h2>
+    <ul>
+      <li><strong>Level 15:</strong> Buy Land — Expand your farm with more tiles</li>
+      <li><strong>Level 20:</strong> Better Seeds — Chance to get better seeds when buying from market</li>
+      <li><strong>Level 30:</strong> Research — Gain research points when harvesting</li>
+      <li><strong>Level 30-40:</strong> Brown Mutation Switch — Unlocks at a random level in this range</li>
+      <li><strong>Level 50-60:</strong> Gold Mutation Switch — Unlocks at a random level in this range</li>
+      <li><strong>Level 100:</strong> True Rice — The ultimate rice type and True mutation switches</li>
+    </ul>
+
+    <h2>🔬 Research System</h2>
+    <p>
+      Once you reach level 30, you'll start earning research points (1-2 per harvest).
+      Use research to permanently upgrade your farming capabilities:
+    </p>
+
+    <h3>Repeatable Upgrades (Infinite Tiers)</h3>
+    <ul>
+      <li><strong>Brown Mutation Chance:</strong> ×1.025 per tier — Increases chance of brown mutations</li>
+      <li><strong>Brown Success Rate:</strong> ×1.001 per tier — Increases brown rice harvest success</li>
+      <li><strong>Gold Mutation Chance:</strong> ×1.02 per tier — Increases chance of gold mutations</li>
+      <li><strong>Gold Success Rate:</strong> ×1.01 per tier — Increases gold rice harvest success</li>
+      <li><strong>Better Fertilizer:</strong> 3 tiers — Improves yield multiplier and time reduction</li>
+    </ul>
+
+    <h3>One-Time Purchases (Mutation Switches)</h3>
+    <ul>
+      <li><strong>Better → Brown Switch:</strong> 25,000 research + 10,000 better seeds</li>
+      <li><strong>Brown → Gold Switch:</strong> 50,000 research + 5,000 brown seeds</li>
+      <li><strong>True → Brown Switch:</strong> 100,000 research + 10,000 brown seeds</li>
+      <li><strong>True → Gold Switch:</strong> 500,000 research + 10,000 brown + 100 gold seeds</li>
+    </ul>
+
+    <div class="tip">
+      <strong>💡 Remember:</strong> After purchasing a mutation switch, you must turn it ON in Settings for mutations to
+      occur!
+    </div>
+
+    <h2>💰 Dynamic Market</h2>
+    <p>
+      The market simulates supply and demand. Prices fluctuate based on your activity and reset every hour (real time):
+    </p>
+    <ul>
+      <li>Selling large amounts of rice decreases sell prices</li>
+      <li>Buying large amounts increases buy prices</li>
+      <li>Trading seeds increases trade costs</li>
+      <li><span class="rank rank-expert">Expert</span> rank stabilizes all prices!</li>
+    </ul>
+
+    <h2>🏆 Achievements</h2>
+    <p>
+      Complete milestones to earn massive XP bonuses! Track achievements in the Achievements/Stats tab:
+    </p>
+    <ul>
+      <li>Acquire rice: 10K / 100K / 1M / 1B → +500 / 5K / 500K / 500M XP</li>
+      <li>Acquire better seeds: 500 / 5K / 50K / 500K → +100 / 1K / 10K / 100K XP</li>
+      <li>Acquire brown seeds: 100 / 1K / 10K / 100K → +1K / 10K / 100K / 1M XP</li>
+      <li>Acquire gold seeds: 1 / 10 / 100 / 1K → +1K / 100K / 1M / 1B XP</li>
+      <li>Acquire true seeds: 1 / 1K / 100K / 1M → +1K / 100K / 1M / 10M XP</li>
+      <li>Spend yuan: 10K / 100K / 1M / 10M → +1K / 10K / 100K / 1M XP</li>
+      <li>Acquire farmlands: 1 / 4 / 7 / 11 → +200 / 1K / 5K / 15K XP</li>
+    </ul>
+
+    <h2>🎯 Strategy Tips</h2>
+    <div class="tip">
+      <ul>
+        <li>Early game: Focus on regular seeds and building up yuan for water and fertilizer</li>
+        <li>Level 15+: Buy land to farm multiple tiles simultaneously</li>
+        <li>Level 20+: Better seeds have higher yield and can mutate</li>
+        <li>Level 30+: Prioritize research upgrades that match your current seed type</li>
+        <li>Level 50+: Pro rank doubles everything — grind hard here!</li>
+        <li>Level 70+: Expert rank gives stable market prices — stock up!</li>
+        <li>Level 100: You made it! True rice is the ultimate farming machine</li>
+      </ul>
+    </div>
+
+    <hr style="border-color: #336; margin: 40px 0;">
+    <p style="text-align: center; color: #666;">
+      Good luck on your journey to becoming a <span class="rank rank-true">True Rice Farmer</span>!
+      <br><br>
+      <a href="#" onclick="window.close()" style="color: cyan;">← Return to Game</a>
+    </p>
+  </div>
+</body>
+
+</html>

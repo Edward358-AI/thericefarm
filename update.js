@@ -1,133 +1,345 @@
+// Game Update Loop - Handles display updates and unlock checks
+"use strict";
 
 function update() {
-  localStorage.setItem("playerdata", JSON.stringify(playerdata))
-  research.innerHTML =   `Research: ${playerdata.research}`
-  riceAmount.innerHTML = `Rice: ${playerdata.rice}<br>Brown rice: ${playerdata.brownRice}<br>Gold rice: ${playerdata.goldRice}`
-  moneyAmount.innerHTML = "Money: " + round2(playerdata.money) + "元"
-  fertilizer.innerHTML = "Fertilizer: " + playerdata.fertile
-  waterAmount.innerHTML = "Water left: " + playerdata.water + " L"
-  achieves.children[2].innerHTML = `<span>Buy land unlocked: Unlocked at XP lvl 5</span><br><span>Select seeds unlocked: (${playerdata.stats.sold} rice sold out of 500)</span><br><span>Brown seed mutations unlocked: (Unlocked at XP lvl ${playerdata.brownLock})</span><br><span>Gold seed mutation unlocked: (Unlocked at XP lvl ${playerdata.goldLock})</span><br><span>Research Unlocked: ${playerdata.unlocked.research ? "Yes" : "No"}</span><br><span>More brown mutations: ${playerdata.unlocked.brownPlus ? "Yes" : "No"}</span><br><span>More gold mutations: ${playerdata.unlocked.goldPlus ? "Yes" : "No"}</span><br><span>Advanced fertilizer: ${playerdata.unlocked.betterFert ? "Yes" : "No"}</span>`
-  achieves.children[5].innerHTML = `<br>Rice acquired: ${playerdata.stats.rice}<br>Rice sold: ${playerdata.stats.sold}<br>Plain seeds acquired: ${playerdata.stats.seeds}<br>Select seeds acquired: ${playerdata.stats.selectSeeds}<br>Brown seeds acquired: ${playerdata.stats.brownSeeds}<br>Brown rice acquired: ${playerdata.stats.brownRice}<br>Gold seeds acquired: ${playerdata.stats.goldSeeds}<br>Gold rice acquired: ${playerdata.stats.goldRice}<br>Water acquired: ${playerdata.stats.water}<br>Money acquired: ${playerdata.stats.money}元<br>Money spent: ${playerdata.stats.spent}元<br>Fertilizer acquired: ${playerdata.stats.fertile}<br>Research acquired: ${playerdata.stats.research}<br>Farmlands: ${playerdata.stats.tiles}<br>`
-  choosing.children[1].innerHTML = `Plain (${playerdata.seeds})`
-  choosing.children[2].innerHTML = `Select (${playerdata.selectSeeds})`
-  choosing.children[3].innerHTML = `Brown (${playerdata.brownSeeds})`
-  choosing.children[4].innerHTML = `Gold (${playerdata.goldSeeds})`
-  if (playerdata.seeds == 0 && playerdata.selectSeeds == 0 && playerdata.brownSeeds == 0 && playerdata.goldSeeds == 0) {
-    seeds = false
+  localStorage.setItem("playerdata", JSON.stringify(playerdata));
+
+  // Update resource displays
+  research.innerHTML = `Research: ${playerdata.research.toLocaleString()}`;
+  riceAmount.innerHTML = `Rice: ${playerdata.rice.rice.toLocaleString()}<br>Brown rice: ${playerdata.rice.brnRice.toLocaleString()}<br>Gold rice: ${playerdata.rice.goldRice.toLocaleString()}`;
+  moneyAmount.innerHTML = "Money: " + round2(playerdata.yuan).toLocaleString() + " 元";
+  fertilizer.innerHTML = "Fertilizer: " + playerdata.fertile.toLocaleString();
+  waterAmount.innerHTML = "Water left: " + playerdata.water.toLocaleString() + " L";
+
+  // Update seed selector display
+  choosing.children[1].innerHTML = `Regular (${playerdata.seed.seeds.toLocaleString()})`;
+  choosing.children[2].innerHTML = `Better (${playerdata.seed.btrSeeds.toLocaleString()})`;
+  choosing.children[3].innerHTML = `Brown (${playerdata.seed.brnSeeds.toLocaleString()})`;
+  choosing.children[4].innerHTML = `Gold (${playerdata.seed.goldSeeds.toLocaleString()})`;
+  if (choosing.children[5]) {
+    choosing.children[5].innerHTML = `True (${playerdata.seed.trueSeeds.toLocaleString()})`;
   }
+
+  // Update rank display
+  const rankDisplay = document.getElementById('rankDisplay');
+  if (rankDisplay) {
+    rankDisplay.innerHTML = playerdata.rank;
+  }
+
+  // Check if any seeds available
+  if (playerdata.seed.seeds == 0 && playerdata.seed.btrSeeds == 0 &&
+    playerdata.seed.brnSeeds == 0 && playerdata.seed.goldSeeds == 0 &&
+    playerdata.seed.trueSeeds == 0) {
+    seeds = false;
+  } else {
+    seeds = true;
+  }
+
+  // Fertilizer toggle state
   if (playerdata.fertile <= 0) {
-    hasFertile = false
-    usefert.disabled = true
-    usefert.value = "false"
+    hasFertile = false;
+    usefert.disabled = true;
+    usefert.value = "false";
   } else {
-    usefert.disabled = false
+    usefert.disabled = false;
   }
-  if (playerdata.rice == 0 && playerdata.brownRice == 0 && playerdata.goldRice == 0) {
-    sellRice.disabled = true
+
+  // Sell button state
+  if (playerdata.rice.rice == 0 && playerdata.rice.brnRice == 0 && playerdata.rice.goldRice == 0) {
+    sellRice.disabled = true;
   } else {
-    sellRice.disabled = false
+    sellRice.disabled = false;
   }
-  if (playerdata.seeds > 0) {
-    choosing.children[1].disabled = false
+
+  // Seed selector states
+  choosing.children[1].disabled = playerdata.seed.seeds <= 0;
+
+  // Better seeds - need to be unlocked
+  if (playerdata.unlocked.btrSeeds && playerdata.seed.btrSeeds > 0) {
+    choosing.children[2].disabled = false;
   } else {
-    choosing.children[1].disabled = true
-  }
-  if (playerdata.unlocked.select == true && playerdata.selectSeeds > 0) {
-    choosing.children[2].disabled = false
-  } else {
-    choosing.children[2].disabled = true
-    if (select.using == true) {
-      select.using = false
-      choosing.value = "noselect"
+    choosing.children[2].disabled = true;
+    if (better.using) {
+      better.using = false;
+      choosing.value = "noselect";
     }
   }
-  if (playerdata.unlocked.brown[0] == true && playerdata.brownSeeds > 0) {
-    choosing.children[3].disabled = false
+
+  // Brown seeds - need to have obtained one
+  if (playerdata.unlocked.brnSeed && playerdata.seed.brnSeeds > 0) {
+    choosing.children[3].disabled = false;
   } else {
-    choosing.children[3].disabled = true
-    if (brown.using == true) {
-      brown.using = false
-      choosing.value = "noselect"
+    choosing.children[3].disabled = true;
+    if (brown.using) {
+      brown.using = false;
+      choosing.value = "noselect";
     }
   }
-  if (playerdata.unlocked.gold[0] == true && playerdata.goldSeeds > 0) {
-    choosing.children[4].disabled = false
+
+  // Gold seeds - need to have obtained one
+  if (playerdata.unlocked.goldSeed && playerdata.seed.goldSeeds > 0) {
+    choosing.children[4].disabled = false;
   } else {
-    choosing.children[4].disabled = true
-    if (gold.using == true) {
-      gold.using = false
-      choosing.value = "noselect"
+    choosing.children[4].disabled = true;
+    if (gold.using) {
+      gold.using = false;
+      choosing.value = "noselect";
     }
   }
-  if (playerdata.stats.sold >= 500 && playerdata.unlocked.select == false) {
-    dialog("Select seeds unlocked!")
-    playerdata.unlocked.select = true
-  }
-  if (playerdata.xpLevel >= playerdata.brownLock && playerdata.unlocked.brown[0] == false && playerdata.unlocked.select == true) {
-    dialog("Brown seed mutations unlocked!")
-    playerdata.unlocked.brown[0] = true
-  }
-  if (playerdata.xpLevel >= playerdata.goldLock && playerdata.unlocked.gold[0] == false && playerdata.unlocked.brown[1] == true) {
-    playerdata.unlocked.gold[0] = true
-  }
-  if (shop[2].innerHTML == "???????" && playerdata.unlocked.brown[1] == true) {
-    shop[2].innerHTML = "Trade for brown seeds"
-}
-  if (shop[8].innerHTML == "???????" && playerdata.xpLevel >= 5) {
-    shop[8].innerHTML = "Buy land"
-}
-  if (playerdata.xpLevel >= 20 && playerdata.unlocked.research == false) {
-    playerdata.unlocked.research = true
-    dialog("Research unlocked!")
-  }
-  if (playerdata.unlocked.stage1) {
-    science[0].style.display = "none"
-    science[1].style.display = "none"
-  }
-  if (playerdata.unlocked.stage2) {
-    science[2].style.display = "none"
-    science[3].style.display = "none"
-  }
-  if (playerdata.unlocked.stage3) {
-    secret.innerHTML = "show ending"
-    secret.onclick = () => {
-      document.getElementById('ending').style.display = 'block'
+
+  // True seeds - need level 100
+  if (choosing.children[5]) {
+    if (playerdata.unlocked.trueSeed && playerdata.seed.trueSeeds > 0) {
+      choosing.children[5].disabled = false;
+    } else {
+      choosing.children[5].disabled = true;
+      if (trueRice.using) {
+        trueRice.using = false;
+        choosing.value = "noselect";
+      }
     }
   }
-  if (playerdata.unlocked.brownPlus) {
-    science[4].style.display = "none"
-    science[5].style.display = "none"
+
+  // Update shop labels based on unlocks
+  if (shop[2].innerHTML === "???????" && playerdata.unlocked.brnSeed) {
+    shop[2].innerHTML = "Trade for brown seeds";
   }
-  if (playerdata.unlocked.goldPlus) {
-    science[6].style.display = "none"
-    science[7].style.display = "none"
+
+  if (shop[8].innerHTML === "???????" && playerdata.unlocked.land) {
+    shop[8].innerHTML = "Buy land";
   }
-  if (playerdata.unlocked.betterFert) {
-    science[8].style.display = "none"
-    science[9].style.display = "none"
+
+  // Update research labels  
+  if (typeof updateScienceLabels === 'function') {
+    updateScienceLabels();
   }
-  if (playerdata.unlocked.research) {
-    science[0].innerHTML = "Buy Stage 1"
-    science[2].innerHTML = "Buy Stage 2"
-    science[4].innerHTML = "Upgrade Brown Seeds"
-    science[6].innerHTML = "Upgrade Gold Seeds"
-    science[8].innerHTML = "Upgrade Fertilizer"
+
+  // Update achievements/stats display
+  updateAchievementsDisplay();
+  updateStatsDisplay();
+
+  // Check for level 100 ending
+  if (playerdata.level >= 100) {
+    const showEndBtn = document.getElementById("showend");
+    if (showEndBtn) showEndBtn.style.display = "block";
   }
-  if (playerdata.unlocked.brownPlus) {
-    select.mutationChance = 0.2
-  }
-  if (playerdata.unlocked.goldPlus) {
-    brown.mutationChance = 0.02
-  }
-  if (playerdata.unlocked.stage3) {
-    document.getElementById("showend").style.display = "block"
-  }
+
   return;
 }
-update()
 
+function updateAchievementsDisplay() {
+  const achievementsContainer = document.getElementById('achievementsContent');
+  if (!achievementsContainer) return;
+
+  // Helper to create achievement category
+  function createCategory(name, icon, thresholds, achievements, currentValue, unit = '') {
+    const completed = achievements.filter(a => a).length;
+    const total = achievements.length;
+    const progressPercent = (completed / total) * 100;
+
+    let itemsHTML = '';
+    for (let i = 0; i < thresholds.length; i++) {
+      const isCompleted = achievements[i];
+      const checkmark = isCompleted
+        ? '<span class="achieve-check done">✓</span>'
+        : '<span class="achieve-check">○</span>';
+      const itemClass = isCompleted ? 'achieve-item done' : 'achieve-item';
+      itemsHTML += `<div class="${itemClass}">${checkmark} ${thresholds[i].toLocaleString()}${unit}</div>`;
+    }
+
+    return `
+      <details class="achieve-category" ${completed > 0 ? 'open' : ''}>
+        <summary class="achieve-header">
+          <span class="achieve-icon">${icon}</span>
+          <span class="achieve-name">${name}</span>
+          <span class="achieve-progress">${completed}/${total}</span>
+        </summary>
+        <div class="achieve-bar-container">
+          <div class="achieve-bar" style="width: ${progressPercent}%"></div>
+        </div>
+        <div class="achieve-items">${itemsHTML}</div>
+      </details>
+    `;
+  }
+
+  // Unlocks section
+  let unlocksHTML = `
+    <div class="unlocks-section">
+      <div class="unlock-item ${playerdata.unlocked.land ? 'done' : ''}">
+        ${playerdata.unlocked.land ? '✓' : '🔒'} Land (Lvl 15)
+      </div>
+      <div class="unlock-item ${playerdata.unlocked.btrSeeds ? 'done' : ''}">
+        ${playerdata.unlocked.btrSeeds ? '✓' : '🔒'} Better Seeds (Lvl 20)
+      </div>
+      <div class="unlock-item ${playerdata.unlocked.research ? 'done' : ''}">
+        ${playerdata.unlocked.research ? '✓' : '🔒'} Research (Lvl 30)
+      </div>
+      <div class="unlock-item ${playerdata.switches.brnSwitch ? 'done' : playerdata.unlocked.brnSwitch ? 'available' : ''}">
+        ${playerdata.switches.brnSwitch ? '✓' : playerdata.unlocked.brnSwitch ? '◇' : '🔒'} Brown Switch
+      </div>
+      <div class="unlock-item ${playerdata.switches.goldSwitch ? 'done' : playerdata.unlocked.goldSwitch ? 'available' : ''}">
+        ${playerdata.switches.goldSwitch ? '✓' : playerdata.unlocked.goldSwitch ? '◇' : '🔒'} Gold Switch
+      </div>
+      <div class="unlock-item ${playerdata.unlocked.trueSeed ? 'done' : ''}">
+        ${playerdata.unlocked.trueSeed ? '✓' : '🔒'} True Rice (Lvl 100)
+      </div>
+    </div>
+  `;
+
+  // Build achievement categories
+  let achieveHTML = `
+    <div class="achieve-header-main">
+      <span class="rank-badge ${playerdata.rank.toLowerCase()}">${playerdata.rank}</span>
+      <span class="level-display">Level ${playerdata.level}</span>
+    </div>
+    
+    <div class="achieve-section-title">🔓 Unlocks</div>
+    ${unlocksHTML}
+    
+    <div class="achieve-section-title">🏆 Achievements</div>
+    <div class="achieve-grid">
+  `;
+
+  // Add all categories
+  achieveHTML += createCategory('Rice', '🍚', [10000, 100000, 1000000, 1000000000],
+    playerdata.achievements.rice, playerdata.stats.rice.rice);
+
+  achieveHTML += createCategory('Better Seeds', '🌱', [500, 5000, 50000, 500000],
+    playerdata.achievements.btrSeeds, playerdata.stats.seed.btrSeeds);
+
+  achieveHTML += createCategory('Brown Seeds', '🤎', [100, 1000, 10000, 100000],
+    playerdata.achievements.brnSeeds, playerdata.stats.seed.brnSeeds);
+
+  achieveHTML += createCategory('Gold Seeds', '💛', [1, 10, 100, 1000],
+    playerdata.achievements.goldSeeds, playerdata.stats.seed.goldSeeds);
+
+  achieveHTML += createCategory('True Seeds', '✨', [1, 1000, 100000, 1000000],
+    playerdata.achievements.trueSeeds, playerdata.stats.seed.trueSeeds);
+
+  achieveHTML += createCategory('Spending', '💰', [10000, 100000, 1000000, 10000000],
+    playerdata.achievements.spend, playerdata.stats.spent, ' 元');
+
+  achieveHTML += createCategory('Farmlands', '🏞️', [2, 5, 8, 12],
+    playerdata.achievements.land, playerdata.land);
+
+  achieveHTML += '</div>';
+
+  achievementsContainer.innerHTML = achieveHTML;
+}
+
+function updateStatsDisplay() {
+  const statsContainer = document.getElementById('statsContent');
+  if (!statsContainer) return;
+
+  // Helper to create a stat item
+  function statItem(icon, label, value, unit = '') {
+    return `
+      <div class="stat-item">
+        <span class="stat-icon">${icon}</span>
+        <span class="stat-label">${label}</span>
+        <span class="stat-value">${value.toLocaleString()}${unit}</span>
+      </div>
+    `;
+  }
+
+  // Helper to create a stat category
+  function statCategory(title, icon, items) {
+    return `
+      <div class="stat-category">
+        <div class="stat-category-header">
+          <span class="stat-category-icon">${icon}</span>
+          <span class="stat-category-title">${title}</span>
+        </div>
+        <div class="stat-category-items">${items}</div>
+      </div>
+    `;
+  }
+
+  // Rice stats
+  const riceStats =
+    statItem('🍚', 'Rice', playerdata.stats.rice.rice) +
+    statItem('🤎', 'Brown Rice', playerdata.stats.rice.brnRice) +
+    statItem('💛', 'Gold Rice', playerdata.stats.rice.goldRice) +
+    statItem('📦', 'Rice Sold', playerdata.stats.sold);
+
+  // Seed stats  
+  const seedStats =
+    statItem('🌾', 'Regular', playerdata.stats.seed.seeds) +
+    statItem('🌱', 'Better', playerdata.stats.seed.btrSeeds) +
+    statItem('🤎', 'Brown', playerdata.stats.seed.brnSeeds) +
+    statItem('💛', 'Gold', playerdata.stats.seed.goldSeeds) +
+    statItem('✨', 'True', playerdata.stats.seed.trueSeeds);
+
+  // Economy stats
+  const economyStats =
+    statItem('💧', 'Water', playerdata.stats.water) +
+    statItem('💰', 'Yuan Earned', playerdata.stats.yuan, ' 元') +
+    statItem('🛒', 'Yuan Spent', playerdata.stats.spent, ' 元') +
+    statItem('🔬', 'Research', playerdata.stats.research) +
+    statItem('🏞️', 'Farmlands', playerdata.land);
+
+  // Research progress
+  const researchItems = `
+    <div class="research-grid">
+      <div class="research-item">
+        <span class="research-label">Brown Mutation</span>
+        <span class="research-tier">Tier ${playerdata.researchPurchases.brownMutation}</span>
+      </div>
+      <div class="research-item">
+        <span class="research-label">Brown Success</span>
+        <span class="research-tier">Tier ${playerdata.researchPurchases.brownSuccess}</span>
+      </div>
+      <div class="research-item">
+        <span class="research-label">Gold Mutation</span>
+        <span class="research-tier">Tier ${playerdata.researchPurchases.goldMutation}</span>
+      </div>
+      <div class="research-item">
+        <span class="research-label">Gold Success</span>
+        <span class="research-tier">Tier ${playerdata.researchPurchases.goldSuccess}</span>
+      </div>
+      <div class="research-item full-width">
+        <span class="research-label">Fertilizer</span>
+        <div class="research-bar-container">
+          <div class="research-bar" style="width: ${(playerdata.researchPurchases.betterFert / 3) * 100}%"></div>
+        </div>
+        <span class="research-tier">${playerdata.researchPurchases.betterFert}/3</span>
+      </div>
+    </div>
+  `;
+
+  statsContainer.innerHTML = `
+    <div class="stats-container">
+      ${statCategory('Rice Acquired', '🍚', riceStats)}
+      ${statCategory('Seeds Acquired', '🌾', seedStats)}
+      ${statCategory('Economy', '💰', economyStats)}
+      <div class="stat-category">
+        <div class="stat-category-header">
+          <span class="stat-category-icon">🔬</span>
+          <span class="stat-category-title">Research Progress</span>
+        </div>
+        ${researchItems}
+      </div>
+    </div>
+  `;
+}
+
+// Update tiles based on land count
+function updateTiles() {
+  for (let i = 0; i < playerdata.land && i < tiles.children.length; i++) {
+    tiles.children[i].style.display = 'inline-block';
+  }
+  for (let i = playerdata.land; i < tiles.children.length; i++) {
+    tiles.children[i].style.display = 'none';
+  }
+}
+
+// Initial update
+update();
+updateTiles();
+
+// Use proxy to auto-update on changes
 playerdata = observe(playerdata, (target, prop, changes) => {
-  target[prop] = changes
-  update()
-  return true
-})
+  target[prop] = changes;
+  update();
+  return true;
+});
