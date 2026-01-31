@@ -175,10 +175,10 @@ function updateAchievementsDisplay() {
         ${playerdata.unlocked.research ? '✓' : '🔒'} Research (Lvl 30)
       </div>
       <div class="unlock-item ${playerdata.switches.brnSwitch ? 'done' : playerdata.unlocked.brnSwitch ? 'available' : ''}">
-        ${playerdata.switches.brnSwitch ? '✓' : playerdata.unlocked.brnSwitch ? '◇' : '🔒'} Brown Switch
+        ${playerdata.switches.brnSwitch ? '✓' : playerdata.unlocked.brnSwitch ? '◇' : '🔒'} Brown Switch (Lvl ${playerdata.unlocked.brnLock})
       </div>
       <div class="unlock-item ${playerdata.switches.goldSwitch ? 'done' : playerdata.unlocked.goldSwitch ? 'available' : ''}">
-        ${playerdata.switches.goldSwitch ? '✓' : playerdata.unlocked.goldSwitch ? '◇' : '🔒'} Gold Switch
+        ${playerdata.switches.goldSwitch ? '✓' : playerdata.unlocked.goldSwitch ? '◇' : '🔒'} Gold Switch (Lvl ${playerdata.unlocked.goldLock})
       </div>
       <div class="unlock-item ${playerdata.unlocked.trueSeed ? 'done' : ''}">
         ${playerdata.unlocked.trueSeed ? '✓' : '🔒'} True Rice (Lvl 100)

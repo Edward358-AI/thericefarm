@@ -1166,3 +1166,56 @@ body {
     min-width: 85px;
   }
 }
+
+/* Mutation Unlock Info */
+.unlock-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.unlock-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  background: rgba(50, 50, 80, 0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(100, 100, 140, 0.3);
+  transition: all 0.3s;
+}
+
+.unlock-item.unlocked {
+  background: rgba(0, 150, 80, 0.2);
+  border-color: rgba(0, 200, 100, 0.4);
+}
+
+.unlock-icon {
+  font-size: 1.2em;
+  width: 24px;
+  text-align: center;
+}
+
+.unlock-item.unlocked .unlock-icon {
+  color: #00dd77;
+}
+
+.unlock-label {
+  flex: 1;
+  font-weight: 500;
+  color: #ccffff;
+}
+
+.unlock-level {
+  font-size: 0.9em;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(100, 100, 140, 0.4);
+  color: #aaa;
+}
+
+.unlock-item.unlocked .unlock-level {
+  background: rgba(0, 200, 100, 0.3);
+  color: #88ff88;
+}
