@@ -8,6 +8,10 @@ function getScaledCost(baseCost, timesPurchased) {
 // Research: Increase brown mutation chance (*1.025 per purchase)
 // Cost: 1k*1.2^n research and 500*1.2^n better seeds
 science[0].addEventListener("click", async function researchBrownMutation() {
+  if (!playerdata.switches.brnSwitch) {
+    dialog("Purchase the Brown Switch first!");
+    return;
+  }
   if (playerdata.unlocked.research) {
     const n = playerdata.researchPurchases.brownMutation;
     const researchCost = getScaledCost(1000, n);
@@ -45,6 +49,10 @@ science[0].addEventListener("click", async function researchBrownMutation() {
 // Research: Increase brown rice success rate (*1.005 per purchase + *1.01 milestone every 5)
 // Cost: 1k*1.15^n research and 100*1.15^n brown seeds
 science[2].addEventListener("click", async function researchBrownSuccess() {
+  if (!playerdata.switches.brnSwitch) {
+    dialog("Purchase the Brown Switch first!");
+    return;
+  }
   if (playerdata.unlocked.research) {
     const n = playerdata.researchPurchases.brownSuccess;
     const researchCost = getScaledCost(1000, n);
@@ -84,6 +92,10 @@ science[2].addEventListener("click", async function researchBrownSuccess() {
 // Research: Increase gold mutation chance (*1.02 per purchase)
 // Cost: 10k*1.2^n research and 1k*1.2^n brown seeds
 science[4].addEventListener("click", async function researchGoldMutation() {
+  if (!playerdata.switches.goldSwitch) {
+    dialog("Purchase the Gold Switch first!");
+    return;
+  }
   if (playerdata.unlocked.research) {
     const n = playerdata.researchPurchases.goldMutation;
     const researchCost = getScaledCost(10000, n);
@@ -121,6 +133,10 @@ science[4].addEventListener("click", async function researchGoldMutation() {
 // Research: Increase gold rice success rate (*1.02 per purchase + *1.04 milestone every 5)
 // Cost: 10k*1.15^n research and (1+n) gold seeds
 science[6].addEventListener("click", async function researchGoldSuccess() {
+  if (!playerdata.switches.goldSwitch) {
+    dialog("Purchase the Gold Switch first!");
+    return;
+  }
   if (playerdata.unlocked.research) {
     const n = playerdata.researchPurchases.goldSuccess;
     const researchCost = getScaledCost(10000, n);
@@ -459,48 +475,60 @@ science[20] && science[20].addEventListener("click", async function researchBett
 // Update science lab button labels and costs
 function updateScienceLabels() {
   // Brown Mutation Research
-  if (playerdata.unlocked.research) {
+  if (playerdata.unlocked.research && playerdata.switches.brnSwitch) {
     const n = playerdata.researchPurchases.brownMutation;
     const researchCost = getScaledCost(1000, n);
     const seedCost = getScaledCost(500, n);
     science[0].innerHTML = `Brown Mutation (Tier ${n + 1})`;
     science[1].innerHTML = `${researchCost.toLocaleString()} Research + ${seedCost.toLocaleString()} Better Seeds`;
+  } else if (playerdata.unlocked.research) {
+    science[0].innerHTML = "Brown Mutation";
+    science[1].innerHTML = "🔒 Buy Brown Switch";
   } else {
     science[0].innerHTML = "?????";
     science[1].innerHTML = "?????";
   }
 
   // Brown Success Research
-  if (playerdata.unlocked.research) {
+  if (playerdata.unlocked.research && playerdata.switches.brnSwitch) {
     const n = playerdata.researchPurchases.brownSuccess;
     const researchCost = getScaledCost(1000, n);
     const seedCost = getScaledCost(100, n);
     science[2].innerHTML = `Brown Success (Tier ${n + 1})`;
     science[3].innerHTML = `${researchCost.toLocaleString()} Research + ${seedCost.toLocaleString()} Brown Seeds`;
+  } else if (playerdata.unlocked.research) {
+    science[2].innerHTML = "Brown Success";
+    science[3].innerHTML = "🔒 Buy Brown Switch";
   } else {
     science[2].innerHTML = "?????";
     science[3].innerHTML = "?????";
   }
 
   // Gold Mutation Research
-  if (playerdata.unlocked.research) {
+  if (playerdata.unlocked.research && playerdata.switches.goldSwitch) {
     const n = playerdata.researchPurchases.goldMutation;
     const researchCost = getScaledCost(10000, n);
     const seedCost = getScaledCost(1000, n);
     science[4].innerHTML = `Gold Mutation (Tier ${n + 1})`;
     science[5].innerHTML = `${researchCost.toLocaleString()} Research + ${seedCost.toLocaleString()} Brown Seeds`;
+  } else if (playerdata.unlocked.research) {
+    science[4].innerHTML = "Gold Mutation";
+    science[5].innerHTML = "🔒 Buy Gold Switch";
   } else {
     science[4].innerHTML = "?????";
     science[5].innerHTML = "?????";
   }
 
   // Gold Success Research
-  if (playerdata.unlocked.research) {
+  if (playerdata.unlocked.research && playerdata.switches.goldSwitch) {
     const n = playerdata.researchPurchases.goldSuccess;
     const researchCost = getScaledCost(10000, n);
     const seedCost = 1 + n;
     science[6].innerHTML = `Gold Success (Tier ${n + 1})`;
     science[7].innerHTML = `${researchCost.toLocaleString()} Research + ${seedCost} Gold Seeds`;
+  } else if (playerdata.unlocked.research) {
+    science[6].innerHTML = "Gold Success";
+    science[7].innerHTML = "🔒 Buy Gold Switch";
   } else {
     science[6].innerHTML = "?????";
     science[7].innerHTML = "?????";
@@ -551,7 +579,7 @@ function updateScienceLabels() {
         science[12].disabled = true;
       } else {
         science[12].innerHTML = "Gold Switch";
-        science[13].innerHTML = "50K Research + 5K Brown Seeds";
+        science[13].innerHTML = "50,000 Research + 5,000 Brown Seeds";
       }
     } else {
       science[12].innerHTML = "?????";
@@ -568,7 +596,7 @@ function updateScienceLabels() {
         science[14].disabled = true;
       } else {
         science[14].innerHTML = "True→Brown Switch";
-        science[15].innerHTML = "100K Research + 10K Brown Seeds";
+        science[15].innerHTML = "100,000 Research + 10,000 Brown Seeds";
       }
     } else {
       science[14].innerHTML = "?????";
@@ -585,7 +613,7 @@ function updateScienceLabels() {
         science[16].disabled = true;
       } else {
         science[16].innerHTML = "True→Gold Switch";
-        science[17].innerHTML = "500K Research + 10K Brown Seeds + 100 Gold Seeds";
+        science[17].innerHTML = "500,000 Research + 10,000 Brown Seeds + 100 Gold Seeds";
       }
     } else {
       science[16].innerHTML = "?????";
@@ -610,7 +638,7 @@ function updateScienceLabels() {
       } else {
         const { research, seeds, mult } = costs[tier];
         science[18].innerHTML = `Better Regular (Tier ${tier + 1})`;
-        science[19].innerHTML = `${(research / 1000)}K Research + ${(seeds / 1000)}K Seeds → ×${mult}`;
+        science[19].innerHTML = `${(research / 1000)},000 Research + ${(seeds / 1000)},000 Seeds → ×${mult}`;
       }
     } else {
       science[18].innerHTML = "?????";
@@ -635,7 +663,7 @@ function updateScienceLabels() {
       } else {
         const { research, seeds, mult } = costs[tier];
         science[20].innerHTML = `Better Better (Tier ${tier + 1})`;
-        science[21].innerHTML = `${(research / 1000)}K Research + ${(seeds / 1000)}K Better Seeds → ×${mult}`;
+        science[21].innerHTML = `${(research / 1000)},000 Research + ${(seeds / 1000)},000 Better Seeds → ×${mult}`;
       }
     } else {
       science[20].innerHTML = "?????";
