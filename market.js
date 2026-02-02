@@ -357,13 +357,16 @@ shop[4].addEventListener("click", async function buyWater() {
 shop[6].addEventListener("click", async function buyFertilizer() {
   checkMarketReset();
 
-  if (playerdata.yuan >= 1.5) {
+  // Tier 1+ fertilizer research = 1 yuan per fertilizer instead of 1.5
+  const basePrice = (playerdata.researchPurchases.betterFert >= 1) ? 1 : 1.5;
+
+  if (playerdata.yuan >= basePrice) {
     const priceMultiplier = getBuyPriceMultiplier("fertilizer");
-    const pricePerUnit = round2(1.5 * priceMultiplier);
+    const pricePerUnit = round2(basePrice * priceMultiplier);
 
     const howMuch = await gamePrompt(
       "🌿 Buy Fertilizer",
-      `Current price: <b>${pricePerUnit} 元</b> each`,
+      `Current price: <b>${pricePerUnit} 元</b> each${playerdata.researchPurchases.betterFert >= 1 ? ' (Tier 1 discount!)' : ''}`,
       "Enter amount...",
       "",
       `You have: ${playerdata.yuan.toLocaleString()} 元`
@@ -387,7 +390,7 @@ shop[6].addEventListener("click", async function buyFertilizer() {
       dialog("Please enter a valid number!");
     }
   } else {
-    dialog("Not enough money! Need at least 1.5 元.");
+    dialog(`Not enough money! Need at least ${basePrice} 元.`);
   }
 });
 
