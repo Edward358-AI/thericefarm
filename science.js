@@ -174,9 +174,9 @@ science[6].addEventListener("click", async function researchGoldSuccess() {
 });
 
 // Research: Better Fertilizer (3 tiers)
-// Tier 1: 2x yield, 7/8s time - 20k research + 20k fertilizer
-// Tier 2: 3x yield, 3/4s time - 100k research + 100k fertilizer
-// Tier 3: 4x yield, 1/2s time - 500k research + 500k fertilizer
+// Tier 1: 2x yield, 3/4s time - 20k research + 20k fertilizer
+// Tier 2: 3x yield, 1/2s time - 100k research + 100k fertilizer
+// Tier 3: 4x yield, 1/4s time - 500k research + 500k fertilizer
 science[8].addEventListener("click", async function researchFertilizer() {
   if (playerdata.unlocked.research) {
     const currentTier = playerdata.researchPurchases.betterFert;
@@ -187,9 +187,9 @@ science[8].addEventListener("click", async function researchFertilizer() {
     }
 
     const costs = [
-      { research: 20000, fertilizer: 20000, yield: "2×", time: "7/8" },
-      { research: 100000, fertilizer: 100000, yield: "3×", time: "3/4" },
-      { research: 500000, fertilizer: 500000, yield: "4×", time: "1/2" }
+      { research: 20000, fertilizer: 20000, yield: "2×", time: "3/4" },
+      { research: 100000, fertilizer: 100000, yield: "3×", time: "1/2" },
+      { research: 500000, fertilizer: 500000, yield: "4×", time: "1/4" }
     ];
 
     const next = costs[currentTier];

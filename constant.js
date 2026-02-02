@@ -200,11 +200,11 @@ class Rice {
 
     const fertLevel = playerdata.researchPurchases.betterFert;
     switch (fertLevel) {
-      case 0: return this.seconds - 3; // Base fertilizer
-      case 1: return Math.floor(this.seconds * 7 / 8); // Better fert tier 1
-      case 2: return Math.floor(this.seconds * 3 / 4); // Better fert tier 2  
-      case 3: return Math.floor(this.seconds * 1 / 2); // Better fert tier 3
-      default: return Math.floor(this.seconds * 1 / 2);
+      case 0: return this.seconds - 1; // Base fertilizer
+      case 1: return Math.floor(this.seconds * 3 / 4); // Better fert tier 1
+      case 2: return Math.floor(this.seconds * 1 / 2); // Better fert tier 2  
+      case 3: return Math.floor(this.seconds * 1 / 4); // Better fert tier 3
+      default: return Math.floor(this.seconds * 1 / 4);
     }
   }
 
