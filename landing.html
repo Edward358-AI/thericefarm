@@ -4,9 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>The Rice Farm - Guide</title>
+  <title>The Rice Farm - Ultimate Guide</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Onest&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
     * {
       box-sizing: border-box;
@@ -17,65 +18,85 @@
       width: 100%;
       min-height: 100%;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background: rgb(2, 0, 36);
-      background: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(14, 14, 74, 1) 50%, rgba(18, 18, 84, 1) 100%);
-      color: #00ffff;
-      font-family: Onest, sans-serif;
+      background: linear-gradient(135deg, #020024 0%, #0e0e4a 50%, #121254 100%);
+      color: #e0f7fa;
+      font-family: 'Onest', sans-serif;
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
+      padding: 40px 20px;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5em;
+      font-size: 3em;
       margin-bottom: 10px;
+      color: #00ffff;
       text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
     }
 
     .subtitle {
       text-align: center;
       font-size: 1.2em;
-      color: gold;
-      margin-bottom: 40px;
+      color: #ffd700;
+      margin-bottom: 60px;
+      font-weight: 300;
+      letter-spacing: 1px;
     }
 
     h2 {
       color: #ffcc00;
-      border-bottom: 2px solid #ffcc00;
-      padding-bottom: 10px;
-      margin-top: 40px;
+      border-bottom: 2px solid rgba(255, 204, 0, 0.3);
+      padding-bottom: 15px;
+      margin-top: 60px;
+      font-size: 2em;
     }
 
     h3 {
-      color: #88ff88;
-      margin-top: 25px;
+      color: #7df;
+      margin-top: 35px;
+      font-size: 1.4em;
     }
 
     p,
     li {
-      line-height: 1.7;
-      color: #ccffff;
+      color: #b3e5fc;
+      margin-bottom: 10px;
     }
 
-    .highlight {
-      color: gold;
-      font-weight: bold;
+    .stat-box {
+      background: rgba(0, 20, 40, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
     }
 
+    .formula {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: #88ff88;
+      font-size: 0.9em;
+    }
+
+    /* Rank Badges */
     .rank {
       display: inline-block;
       padding: 3px 10px;
       border-radius: 5px;
-      margin: 2px;
       font-weight: bold;
+      font-size: 0.9em;
     }
 
     .rank-amateur {
-      background: #555;
+      background: #444;
       color: #ccc;
     }
 
@@ -105,285 +126,406 @@
     }
 
     .rank-true {
-      background: linear-gradient(45deg, gold, orange);
+      background: linear-gradient(45deg, gold, #ff8800);
       color: #000;
     }
 
+    /* Tables */
     table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       margin: 20px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(0, 20, 40, 0.4);
     }
 
     th,
     td {
-      padding: 12px;
+      padding: 15px;
       text-align: left;
-      border: 1px solid #336;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     th {
-      background: rgba(0, 100, 150, 0.3);
-      color: gold;
+      background: rgba(0, 60, 100, 0.8);
+      color: #00ffff;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85em;
+      letter-spacing: 1px;
     }
 
-    tr:nth-child(even) {
-      background: rgba(0, 50, 100, 0.2);
+    tr:last-child td {
+      border-bottom: none;
     }
 
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Info Boxes */
     .tip {
-      background: rgba(0, 150, 100, 0.2);
+      background: rgba(0, 150, 100, 0.15);
       border-left: 4px solid #00ff88;
-      padding: 15px;
-      margin: 20px 0;
+      padding: 20px;
+      margin: 25px 0;
       border-radius: 0 8px 8px 0;
     }
 
     .warning {
-      background: rgba(150, 100, 0, 0.2);
+      background: rgba(255, 100, 0, 0.15);
       border-left: 4px solid #ffaa00;
-      padding: 15px;
-      margin: 20px 0;
+      padding: 20px;
+      margin: 25px 0;
       border-radius: 0 8px 8px 0;
     }
 
-    ul {
-      padding-left: 25px;
+    /* Grid for Stats */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
 
-    li {
-      margin: 8px 0;
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>🌾 The Rice Farm 🌾</h1>
-    <p class="subtitle">The Ultimate Goal: Reach Level 100 and become a <span class="rank rank-true">True Rice
-        Farmer</span></p>
+    <h1>🌾 The Rice Farm</h1>
+    <p class="subtitle">Detailed Game Mechanics & Strategy Guide</p>
 
-    <h2>📖 Your Journey Begins</h2>
-    <p>
-      You start as a humble <span class="rank rank-amateur">Amateur</span> farmer with just 10 seeds, 10 water, and 10
-      yuan.
-      Through dedication, strategic farming, and smart investments, you will climb the ranks from peasant to legend.
-      The path is long—100 levels stand between you and the title of <span class="rank rank-true">True Rice
-        Farmer</span>.
-      Are you ready to cultivate greatness?
-    </p>
-
-    <h2>🌱 Getting Started</h2>
-    <p>
-      Farming is simple: select a seed type, click on an empty tile, wait for it to grow, then harvest.
-      Each harvest yields rice that you can sell for yuan. Use your yuan to buy more seeds, water, fertilizer, and
-      eventually land.
-    </p>
-
-    <div class="tip">
-      <strong>💡 Tip:</strong> Turn on fertilizer in the stats panel to reduce grow time and increase yield.
-      It uses 1-2 fertilizer per plant, so stock up!
+    <!-- PROLOGUE -->
+    <div class="stat-box">
+      <h3>🎯 The Goal</h3>
+      <p>
+        Your mission is to reach <strong>Level 100</strong> and achieve the prestigious <span
+          class="rank rank-true">True Rank</span>.
+        Farm rice, manage fluctuations in the dynamic economy, research powerful upgrades, and maximize your XP gain.
+      </p>
     </div>
 
-    <h2>🍚 Rice Types</h2>
+    <!-- CORE MECHANICS -->
+    <h2>📊 Core Mechanics</h2>
+
+    <h3>XP & Leveling Formulas</h3>
+    <div class="stat-box">
+      <p><strong>XP Required for Next Level:</strong></p>
+      <p><span class="formula">100 × 1.2^(TargetLevel - 1)</span></p>
+      <hr style="border-color: rgba(255,255,255,0.1)">
+      <p><strong>Global XP Multipliers (Stack Multiplicatively):</strong></p>
+      <ul>
+        <li>Level 40+: <strong>+25% XP</strong> (Permanent)</li>
+        <li>Rank <span class="rank rank-pro">Pro</span> (Lvl 50+): <strong>×2 XP</strong></li>
+        <li>Maximum Multiplier: <strong>×2.5</strong> (at Level 50+)</li>
+      </ul>
+      <p><em>Example: At Level 50, you earn 2.5× the base XP for everything.</em></p>
+    </div>
+
+    <h3>Economy & Market Fluctuations</h3>
+    <p>Prices update in real-time based on supply and demand. Market resets hourly.</p>
+    <table>
+      <tr>
+        <th>Action</th>
+        <th>Effect on Price</th>
+        <th>Limits</th>
+      </tr>
+      <tr>
+        <td>Sell Regular Rice</td>
+        <td>-10% per 5,000 sold</td>
+        <td>Min Price: 10% of base</td>
+      </tr>
+      <tr>
+        <td>Sell Brown Rice</td>
+        <td>-5% per 1,000 sold</td>
+        <td>Min Price: 10% of base</td>
+      </tr>
+      <tr>
+        <td>Sell Gold Rice</td>
+        <td>-10% per 10 sold</td>
+        <td>Min Price: 10% of base</td>
+      </tr>
+      <tr>
+        <td>Buy Seeds</td>
+        <td>+10-20% per 5,000 bought</td>
+        <td>No Cap</td>
+      </tr>
+      <tr>
+        <td>Buy Fertilizer</td>
+        <td>+10-20% per 1,000 bought</td>
+        <td>No Cap</td>
+      </tr>
+    </table>
+    <div class="tip">
+      <strong>💡 Expert Rank Benefit:</strong> Upon reaching <span class="rank rank-expert">Expert</span> (Lvl 70),
+      market prices <strong>stabilize permanently</strong> at 100% value (no fluctuations).
+    </div>
+
+    <!-- RICE STATS -->
+    <h2>🌾 Crop Statistics</h2>
     <table>
       <tr>
         <th>Type</th>
-        <th>Grow Time</th>
-        <th>Yield</th>
+        <th>Base XP (Harvest)</th>
+        <th>Base Yield</th>
+        <th>Base Time</th>
         <th>Sell Price</th>
         <th>Success Rate</th>
-        <th>Special</th>
       </tr>
       <tr>
         <td><strong>Regular</strong></td>
-        <td>5s</td>
+        <td>3-5 XP</td>
         <td>Base</td>
-        <td>1元</td>
+        <td>5s</td>
+        <td>1 元</td>
         <td>100%</td>
-        <td>Starting seed</td>
       </tr>
       <tr>
         <td><strong>Better</strong></td>
+        <td>4-6 XP</td>
+        <td>Base + 4</td>
         <td>7s</td>
-        <td>+4</td>
-        <td>1元</td>
+        <td>1 元</td>
         <td>100%</td>
-        <td>Can mutate to Brown</td>
       </tr>
       <tr>
         <td><strong>Brown</strong></td>
+        <td>5-7 XP</td>
+        <td>Base + 2</td>
         <td>9s</td>
-        <td>+2</td>
-        <td>9元</td>
+        <td>9 元</td>
         <td>90%</td>
-        <td>Can mutate to Gold</td>
       </tr>
       <tr>
         <td><strong>Gold</strong></td>
+        <td>10-15 XP</td>
+        <td>Floor(Yield / 2)</td>
         <td>11s</td>
-        <td>½ base</td>
-        <td>1000元</td>
+        <td>1,000 元</td>
         <td>20%</td>
-        <td>Extremely valuable!</td>
       </tr>
       <tr>
-        <td><strong style="color: gold;">True</strong></td>
+        <td><strong>True</strong></td>
+        <td>5-8 XP</td>
+        <td>Base + 50</td>
         <td>4s</td>
-        <td>+50</td>
-        <td>1元</td>
+        <td>1 元</td>
         <td>100%</td>
-        <td>2× mutation rate, 2× research</td>
       </tr>
     </table>
 
-    <div class="warning">
-      <strong>⚠️ Note:</strong> Mutations only occur if you've purchased the mutation switch AND turned it on in
-      the sidebar (left panel)!
+    <h3>XP from Selling Rice</h3>
+    <p>Selling rice grants XP in addition to Yuan:</p>
+    <ul>
+      <li><strong>Regular:</strong> 1 XP per 100 rice</li>
+      <li><strong>Brown:</strong> 1 XP per 10 rice</li>
+      <li><strong>Gold:</strong> 5 XP per 1 rice (High Value!)</li>
+    </ul>
+
+    <!-- RESEARCH -->
+    <h2>🔬 Research & Upgrades</h2>
+    <p>Unlocked at Level 30. Earn 1-2 Research Points per harvest (Base).</p>
+
+    <h3>Fertilizer Tiers</h3>
+    <table>
+      <tr>
+        <th>Tier</th>
+        <th>Cost (Res + Fert)</th>
+        <th>Yield</th>
+        <th>Time</th>
+        <th>Bonus Effect</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>20,000</td>
+        <td>×2</td>
+        <td>3/4 Base</td>
+        <td>Fertilizer Cost: 1.5 → 1元</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>100,000</td>
+        <td>×3</td>
+        <td>1/2 Base</td>
+        <td>+25% Harvest XP</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>500,000</td>
+        <td>×4</td>
+        <td>1/4 Base</td>
+        <td>+50% Harvest Research</td>
+      </tr>
+    </table>
+
+    <h3>Scaling Upgrades</h3>
+    <table>
+      <tr>
+        <th>Upgrade</th>
+        <th>Cost Formula (n=purchases)</th>
+        <th>Benefit Formula</th>
+      </tr>
+      <tr>
+        <td>Brown Mutation</td>
+        <td>1k Res + 500 Btr Seeds × 1.15^n</td>
+        <td>Chance × 1.025^n</td>
+      </tr>
+      <tr>
+        <td>Brown Success</td>
+        <td>1k Res + 100 Brn Seeds × 1.15^n</td>
+        <td>Rate × 1.005^n (+Milestone Bonus)</td>
+      </tr>
+      <tr>
+        <td>Gold Mutation</td>
+        <td>10k Res + 1k Brn Seeds × 1.15^n</td>
+        <td>Chance × 1.02^n</td>
+      </tr>
+      <tr>
+        <td>Gold Success</td>
+        <td>10k Res + (1+n) Gold Seeds</td>
+        <td>Rate × 1.02^n (+Milestone Bonus)</td>
+      </tr>
+    </table>
+
+    <h3>Yield Research</h3>
+    <div class="grid-2">
+      <div class="stat-box">
+        <strong>Better Regular Seeds</strong><br>
+        Tier 1: 5k Cost → ×2 Yield<br>
+        Tier 2: 15k Cost → ×4 Yield<br>
+        Tier 3: 30k Cost → ×6 Yield
+      </div>
+      <div class="stat-box">
+        <strong>Better Better Seeds</strong><br>
+        Tier 1: 10k Cost → ×2 Yield<br>
+        Tier 2: 25k Cost → ×3 Yield<br>
+        Tier 3: 50k Cost → ×4 Yield
+      </div>
     </div>
 
-    <h2>📈 Farmer Ranks</h2>
-    <p>As you level up, you'll progress through 7 farmer ranks, each with unique rewards and benefits:</p>
-
+    <!-- PROGRESSION -->
+    <h2>🏆 Progression & Ranks</h2>
     <table>
       <tr>
         <th>Rank</th>
-        <th>Levels</th>
-        <th>Rewards</th>
-        <th>Benefits</th>
+        <th>Level</th>
+        <th>One-Time Rewards</th>
+        <th>Passive Perks</th>
       </tr>
       <tr>
         <td><span class="rank rank-amateur">Amateur</span></td>
         <td>0-9</td>
-        <td>—</td>
-        <td>—</td>
+        <td>-</td>
+        <td>-</td>
       </tr>
       <tr>
         <td><span class="rank rank-beginner">Beginner</span></td>
         <td>10-19</td>
-        <td>+2,000元, 1,000 fertilizer</td>
-        <td>—</td>
+        <td>2k 元, 1k Fert</td>
+        <td>-</td>
       </tr>
       <tr>
         <td><span class="rank rank-average">Average</span></td>
         <td>20-29</td>
-        <td>+5,000元, 2,000 fertilizer, 100 better seeds</td>
-        <td>+5% better seed chance in market</td>
+        <td>5k 元, 2k Fert, 100 Btr Seeds</td>
+        <td>+5% Better Seed market chance</td>
       </tr>
       <tr>
         <td><span class="rank rank-advanced">Advanced</span></td>
         <td>30-49</td>
-        <td>+10,000元, 1,000 research, 1,000 better seeds</td>
-        <td>+1 crop yield; Level 40+ gives +25% XP</td>
+        <td>10k 元, 1k Res, 1k Btr Seeds</td>
+        <td>+1 Base Yield (All Crops)</td>
       </tr>
       <tr>
         <td><span class="rank rank-pro">Pro</span></td>
         <td>50-69</td>
-        <td>+100,000元, 10,000 research, 10,000 brown seeds</td>
-        <td>2× XP and 2× research gained</td>
+        <td>100k 元, 10k Res, 10k Brn Seeds</td>
+        <td><strong>Double XP & Research</strong></td>
       </tr>
       <tr>
         <td><span class="rank rank-expert">Expert</span></td>
         <td>70-99</td>
-        <td>+500,000元, 50,000 research, 10 gold seeds</td>
-        <td>Market prices don't fluctuate</td>
+        <td>500k 元, 50k Res, 10 Gold Seeds</td>
+        <td>Market Prices <strong>Never Fluctuate</strong></td>
       </tr>
       <tr>
         <td><span class="rank rank-true">True</span></td>
         <td>100+</td>
-        <td>+10,000,000元, 200,000 research, 50 gold seeds, 1B regular seeds</td>
-        <td>A true farmer needs no benefits</td>
+        <td>10M 元, 200k Res, 50 Gold Seeds</td>
+        <td>Ultimate Status</td>
       </tr>
     </table>
 
-    <h2>🔓 Level Unlocks</h2>
-    <ul>
-      <li><strong>Level 15:</strong> Buy Land — Expand your farm with more tiles</li>
-      <li><strong>Level 20:</strong> Better Seeds — Chance to get better seeds when buying from market</li>
-      <li><strong>Level 30:</strong> Research — Gain research points when harvesting</li>
-      <li><strong>Level 30-40:</strong> Brown Mutation Switch — Unlocks at a random level in this range</li>
-      <li><strong>Level 50-60:</strong> Gold Mutation Switch — Unlocks at a random level in this range</li>
-      <li><strong>Level 100:</strong> True Rice — The ultimate rice type and True mutation switches</li>
-    </ul>
+    <!-- ACHIEVEMENTS -->
+    <h2>🏅 Achievement Rewards</h2>
+    <p>Achievements grant substantial XP upon completion.</p>
+    <table>
+      <tr>
+        <th>Category</th>
+        <th>Thresholds</th>
+        <th>XP Rewards</th>
+      </tr>
+      <tr>
+        <td><strong>Rice Harvested</strong></td>
+        <td>10k / 100k / 1M / 1B</td>
+        <td>500 / 5k / 500k / 500M</td>
+      </tr>
+      <tr>
+        <td><strong>Better Seeds</strong></td>
+        <td>500 / 5k / 50k / 500k</td>
+        <td>100 / 1k / 10k / 100k</td>
+      </tr>
+      <tr>
+        <td><strong>Brown Seeds</strong></td>
+        <td>100 / 1k / 10k / 100k</td>
+        <td>1k / 10k / 100k / 1M</td>
+      </tr>
+      <tr>
+        <td><strong>Gold Seeds</strong></td>
+        <td>1 / 10 / 100 / 1k</td>
+        <td>1k / 100k / 1M / 1B</td>
+      </tr>
+      <tr>
+        <td><strong>Farmlands</strong></td>
+        <td>2 / 5 / 8 / 12</td>
+        <td>200 / 1k / 5k / 15k</td>
+      </tr>
+      <tr>
+        <td><strong>Spending</strong></td>
+        <td>10k / 100k / 1M / 10M</td>
+        <td>1k / 10k / 100k / 1M</td>
+      </tr>
+    </table>
 
-    <h2>🔬 Research System</h2>
-    <p>
-      Once you reach level 30, you'll start earning research points (1-2 per harvest, or 2-3 with Tier 3 fertilizer).
-      Use research to permanently upgrade your farming capabilities:
-    </p>
-
-    <h3>Repeatable Upgrades (Infinite Tiers)</h3>
-    <ul>
-      <li><strong>Brown Mutation Chance:</strong> ×1.025 per tier — Increases chance of brown mutations</li>
-      <li><strong>Brown Success Rate:</strong> ×1.005 per tier + ×1.01 every 5 tiers — Increases brown rice harvest
-        success</li>
-      <li><strong>Gold Mutation Chance:</strong> ×1.02 per tier — Increases chance of gold mutations</li>
-      <li><strong>Gold Success Rate:</strong> ×1.02 per tier + ×1.04 every 5 tiers — Increases gold rice harvest success
-      </li>
-      <li><strong>Better Fertilizer:</strong> 3 tiers — Improves yield (×2/×3/×4), time reduction, Tier 2 adds +25% XP,
-        Tier 3 adds +50% research</li>
-      <li><strong>Better Regular Seeds:</strong> 3 tiers (5K/15K/30K research + seeds) — Yield multiplier ×2/×4/×6</li>
-      <li><strong>Better Better Seeds:</strong> 3 tiers (10K/25K/50K research + better seeds) — Yield multiplier
-        ×2/×3/×4</li>
-    </ul>
-
-    <h3>One-Time Purchases (Mutation Switches)</h3>
-    <ul>
-      <li><strong>Better → Brown Switch:</strong> 25,000 research + 10,000 better seeds</li>
-      <li><strong>Brown → Gold Switch:</strong> 50,000 research + 5,000 brown seeds</li>
-      <li><strong>True → Brown Switch:</strong> 100,000 research + 10,000 brown seeds</li>
-      <li><strong>True → Gold Switch:</strong> 500,000 research + 10,000 brown + 100 gold seeds</li>
-    </ul>
-
-    <div class="tip">
-      <strong>💡 Remember:</strong> After purchasing a mutation switch, you must turn it ON in the sidebar (left panel)
-      for mutations to occur!
+    <div class="warning">
+      <strong>☠️ BANKRUPTCY WARNING:</strong><br>
+      If you reach <strong>0 Seeds</strong> AND <strong>0 Money</strong> AND <strong>0 Rice</strong> to sell, you will
+      be <strong>permanently stuck</strong>.
+      <br>Always keep a reserve of seeds or money!
     </div>
 
-    <h2>💰 Dynamic Market</h2>
-    <p>
-      The market simulates supply and demand. Prices fluctuate based on your activity and reset every hour (real time):
-    </p>
-    <ul>
-      <li>Selling large amounts of rice decreases sell prices</li>
-      <li>Buying large amounts increases buy prices</li>
-      <li>Trading seeds increases trade costs</li>
-      <li><span class="rank rank-expert">Expert</span> rank stabilizes all prices!</li>
-    </ul>
-
-    <h2>🏆 Achievements</h2>
-    <p>
-      Complete milestones to earn massive XP bonuses! Track achievements in the Achievements/Stats tab:
-    </p>
-    <ul>
-      <li>Acquire rice: 10K / 100K / 1M / 1B → +500 / 5K / 500K / 500M XP</li>
-      <li>Acquire better seeds: 500 / 5K / 50K / 500K → +100 / 1K / 10K / 100K XP</li>
-      <li>Acquire brown seeds: 100 / 1K / 10K / 100K → +1K / 10K / 100K / 1M XP</li>
-      <li>Acquire gold seeds: 1 / 10 / 100 / 1K → +1K / 100K / 1M / 1B XP</li>
-      <li>Acquire true seeds: 1 / 1K / 100K / 1M → +1K / 100K / 1M / 10M XP</li>
-      <li>Spend yuan: 10K / 100K / 1M / 10M → +1K / 10K / 100K / 1M XP</li>
-      <li>Acquire farmlands: 1 / 4 / 7 / 11 → +200 / 1K / 5K / 15K XP</li>
-    </ul>
-
-    <h2>🎯 Strategy Tips</h2>
-    <div class="tip">
-      <ul>
-        <li>Early game: Focus on regular seeds and building up yuan for water and fertilizer</li>
-        <li>Level 15+: Buy land to farm multiple tiles simultaneously</li>
-        <li>Level 20+: Better seeds have higher yield and can mutate</li>
-        <li>Level 30+: Unlock research — invest in yield multipliers and fertilizer upgrades</li>
-        <li>Level 40+: Permanent +25% XP bonus kicks in — the grind speeds up!</li>
-        <li>Level 50+: Pro rank doubles XP and research — combined with Lv40 bonus = 2.5× XP!</li>
-        <li>Level 70+: Expert rank gives stable market prices — stock up on resources!</li>
-        <li>Level 100: You made it! True rice is the ultimate farming machine</li>
-      </ul>
+    <div class="warning">
+      <strong>⚠️ Important Unlocks:</strong><br>
+      • <strong>Lvl 15:</strong> Buy Land<br>
+      • <strong>Lvl 20:</strong> Better Seeds available<br>
+      • <strong>Lvl 30:</strong> Research Lab opens<br>
+      • <strong>Lvl 30-40:</strong> Brown Switch (Random unlock)<br>
+      • <strong>Lvl 50-60:</strong> Gold Switch (Random unlock)<br>
+      • <strong>Lvl 100:</strong> True Rice & Switches
     </div>
 
-    <hr style="border-color: #336; margin: 40px 0;">
-    <p style="text-align: center; color: #666;">
-      Good luck on your journey to becoming a <span class="rank rank-true">True Rice Farmer</span>!
-      <br><br>
-      <a href="#" onclick="window.close()" style="color: cyan;">← Return to Game</a>
+    <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
+    <p style="text-align: center;">
+      <a href="#" onclick="window.close()"
+        style="color: #00ffff; text-decoration: none; border-bottom: 1px dotted #00ffff;">← Close Guide & Return to
+        Farm</a>
     </p>
   </div>
 </body>
