@@ -101,12 +101,12 @@ function update() {
   }
 
   // Update shop labels based on unlocks
-  if (shop[2].innerHTML === "???????" && playerdata.unlocked.brnSeed) {
-    shop[2].innerHTML = "Trade for brown seeds";
+  if (shop[1].innerHTML === "???????" && playerdata.unlocked.brnSeed) {
+    shop[1].innerHTML = "Trade for brown seeds";
   }
 
-  if (shop[8].innerHTML === "???????" && playerdata.unlocked.land) {
-    shop[8].innerHTML = "Buy land";
+  if (shop[4].innerHTML === "???????" && playerdata.unlocked.land) {
+    shop[4].innerHTML = "Buy land";
   }
 
   // Update research labels  
@@ -145,7 +145,7 @@ function updatePriceBoard() {
     brown: 9,
     gold: 1000,
     seeds: 1,
-    water: 0.2,
+    water: 1,
     fertilizer: (playerdata.researchPurchases.betterFert >= 1) ? 1 : 1.5
   };
 
@@ -216,6 +216,36 @@ function updatePriceBoard() {
     const { text, cssClass } = formatPrice(basePrices.fertilizer, buyFert, false);
     priceFert.textContent = text;
     priceFert.className = "price-value " + cssClass;
+  }
+
+  // Update trade rates
+  const priceBetterChance = document.querySelector("#priceBetterChance .price-value");
+  const priceBrownTrade = document.querySelector("#priceBrownTrade .price-value");
+
+  if (priceBetterChance && typeof getBetterSeedChance === 'function') {
+    const chance = Math.round(getBetterSeedChance() * 100);
+    priceBetterChance.textContent = chance + "%";
+    // Color code: green if >= 10%, yellow if < 10%, red if 0%
+    if (chance >= 10) {
+      priceBetterChance.className = "price-value";
+    } else if (chance > 0) {
+      priceBetterChance.className = "price-value moderate";
+    } else {
+      priceBetterChance.className = "price-value bad";
+    }
+  }
+
+  if (priceBrownTrade && typeof getBrownTradeCost === 'function') {
+    const cost = getBrownTradeCost();
+    priceBrownTrade.textContent = cost + " better seeds";
+    // Color code: green if 20, yellow if > 20, red if > 30
+    if (cost <= 20) {
+      priceBrownTrade.className = "price-value";
+    } else if (cost <= 30) {
+      priceBrownTrade.className = "price-value moderate";
+    } else {
+      priceBrownTrade.className = "price-value bad";
+    }
   }
 }
 

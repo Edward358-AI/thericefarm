@@ -1330,3 +1330,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.price-section-full {
+  grid-column: 1 / -1;
+}

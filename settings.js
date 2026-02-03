@@ -48,6 +48,11 @@ usefert.addEventListener("change", function checkfert() {
   }
 });
 
+// Initialize hasFertile on page load based on saved select value
+if (playerdata.fertile > 0 && usefert.value === "true") {
+  hasFertile = true;
+}
+
 // Mutation Switch Toggles
 const toggleBrnSwitch = document.getElementById("toggleBrnSwitch");
 const toggleGoldSwitch = document.getElementById("toggleGoldSwitch");

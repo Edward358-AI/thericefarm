@@ -58,19 +58,19 @@ function getBuyPriceMultiplier(itemType) {
   let multiplier = 1;
   switch (itemType) {
     case "seeds":
-      // Per 5k bought: +10-20% price
+      // Per 5k bought: +15% price (fixed, no randomness)
       const seedIncreases = Math.floor(playerdata.market.seedsBought / 5000);
-      multiplier += seedIncreases * (0.10 + Math.random() * 0.10);
+      multiplier += seedIncreases * 0.15;
       break;
     case "water":
-      // Per 5k bought: +15-25% price
+      // Per 5k bought: +20% price (fixed, no randomness)
       const waterIncreases = Math.floor(playerdata.market.waterBought / 5000);
-      multiplier += waterIncreases * (0.15 + Math.random() * 0.10);
+      multiplier += waterIncreases * 0.20;
       break;
     case "fertilizer":
-      // Per 1k bought: +10-20% price
+      // Per 1k bought: +15% price (fixed, no randomness)
       const fertIncreases = Math.floor(playerdata.market.fertilizerBought / 1000);
-      multiplier += fertIncreases * (0.10 + Math.random() * 0.10);
+      multiplier += fertIncreases * 0.15;
       break;
   }
   return multiplier;
@@ -91,11 +91,11 @@ function getBetterSeedChance() {
   return Math.max(0, baseChance - reduction + bonus);
 }
 
-// Get brown seed trade cost (base 20 better seeds, +2-4 per 100 traded)
+// Get brown seed trade cost (base 20 better seeds, +3 per 100 traded)
 function getBrownTradeCost() {
   const base = 20;
   const increases = Math.floor(playerdata.market.brownTraded / 100);
-  const additionalCost = increases * (2 + Math.floor(Math.random() * 3));
+  const additionalCost = increases * 3;  // Fixed +3 per 100 traded
   return base + additionalCost;
 }
 
@@ -233,7 +233,7 @@ shop[0].addEventListener("click", async function buySeeds() {
 });
 
 // Trade for brown seeds (20 better seeds = 1 brown seed, scales with market)
-shop[2].addEventListener("click", async function tradeBrown() {
+shop[1].addEventListener("click", async function tradeBrown() {
   checkMarketReset();
 
   if (playerdata.unlocked.brnSeed) {
@@ -274,7 +274,7 @@ shop[2].addEventListener("click", async function tradeBrown() {
 });
 
 // Trade for gold seeds (10k brown seeds = 1 gold seed, scales with market)
-shop[10] && shop[10].addEventListener("click", async function tradeGold() {
+shop[5] && shop[5].addEventListener("click", async function tradeGold() {
   checkMarketReset();
 
   if (playerdata.unlocked.goldSeed) {
@@ -315,7 +315,7 @@ shop[10] && shop[10].addEventListener("click", async function tradeGold() {
 });
 
 // Buy water
-shop[4].addEventListener("click", async function buyWater() {
+shop[2].addEventListener("click", async function buyWater() {
   checkMarketReset();
 
   if (playerdata.yuan > 0) {
@@ -354,7 +354,7 @@ shop[4].addEventListener("click", async function buyWater() {
 });
 
 // Buy fertilizer
-shop[6].addEventListener("click", async function buyFertilizer() {
+shop[3].addEventListener("click", async function buyFertilizer() {
   checkMarketReset();
 
   // Tier 1+ fertilizer research = 1 yuan per fertilizer instead of 1.5
@@ -395,7 +395,7 @@ shop[6].addEventListener("click", async function buyFertilizer() {
 });
 
 // Buy land (unlocked at level 15)
-shop[8].addEventListener("click", async function buyLand() {
+shop[4].addEventListener("click", async function buyLand() {
   checkMarketReset();
 
   if (playerdata.unlocked.land) {
@@ -431,8 +431,8 @@ shop[8].addEventListener("click", async function buyLand() {
 });
 
 // Buy true seeds (unlocked at level 100, 50 yuan each)
-if (shop[12]) {
-  shop[12].addEventListener("click", async function buyTrueSeeds() {
+if (shop[6]) {
+  shop[6].addEventListener("click", async function buyTrueSeeds() {
     if (playerdata.unlocked.trueSeed) {
       const pricePerSeed = 50;
 
