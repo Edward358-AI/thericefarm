@@ -73,7 +73,7 @@ function getBuyPriceMultiplier(itemType) {
       multiplier += fertIncreases * 0.15;
       break;
   }
-  return multiplier;
+  return Math.min(4, multiplier); // Cap at 400%
 }
 
 // Get current better seed chance (base 10%, -1% per 1k bought, min 0%)
