@@ -4,11 +4,11 @@
 if (localStorage.getItem("name")) {
   var farmerName = localStorage.getItem("name");
   formName.style.opacity = 0;
-  startup.children[1].innerHTML = `Welcome back, ${playerdata.rank} peasant ${farmerName}. Glad to see you here.<br>(Click to continue)`;
+  startup.children[1].innerHTML = `Welcome back, ${playerdata.rank} Peasant ${farmerName}. Glad to see you here.<br>(Click to continue)`;
   document.documentElement.addEventListener("click", function clicktocontinue() {
     startup.style.display = "none";
     game.style.display = "inline";
-    welcome.innerHTML = `Welcome back, ${playerdata.rank} ${farmerName}. ${greetings[Math.floor(Math.random() * greetings.length)]}`;
+    welcome.innerHTML = `Welcome back, ${playerdata.rank} Peasant ${farmerName}. ${greetings[Math.floor(Math.random() * greetings.length)]}`;
     document.documentElement.removeEventListener("click", clicktocontinue);
   });
 } else {
@@ -18,13 +18,13 @@ if (localStorage.getItem("name")) {
       localStorage.setItem("name", farmerName);
       startup.style.display = "none";
       game.style.display = "inline";
-      welcome.innerHTML = `Welcome, ${playerdata.rank} ${farmerName}. ${greetings[Math.floor(Math.random() * greetings.length)]}`;
+      welcome.innerHTML = `Welcome, ${playerdata.rank} Peasant ${farmerName}. ${greetings[Math.floor(Math.random() * greetings.length)]}`;
     } else {
       var farmerName = formName[0].value;
       localStorage.setItem("name", farmerName);
       startup.style.display = "none";
       game.style.display = "block";
-      welcome.innerHTML = `Welcome, ${playerdata.rank} ${farmerName}. ${greetings[Math.floor(Math.random() * greetings.length)]}`;
+      welcome.innerHTML = `Welcome, ${playerdata.rank} Peasant ${farmerName}. ${greetings[Math.floor(Math.random() * greetings.length)]}`;
     }
     return false;
   };
