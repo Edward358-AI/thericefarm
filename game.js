@@ -4,7 +4,7 @@
 if (localStorage.getItem("name")) {
   var farmerName = localStorage.getItem("name");
   formName.style.opacity = 0;
-  startup.children[1].innerHTML = `Welcome back, ${playerdata.rank} ${farmerName}. Glad to see you here.<br>(Click to continue)`;
+  startup.children[1].innerHTML = `Welcome back, ${playerdata.rank} peasant ${farmerName}. Glad to see you here.<br>(Click to continue)`;
   document.documentElement.addEventListener("click", function clicktocontinue() {
     startup.style.display = "none";
     game.style.display = "inline";
