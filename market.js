@@ -430,11 +430,11 @@ shop[4].addEventListener("click", async function buyLand() {
   }
 });
 
-// Buy true seeds (unlocked at level 100, 50 yuan each)
+// Buy true seeds (unlocked at level 100, 10 yuan each)
 if (shop[6]) {
   shop[6].addEventListener("click", async function buyTrueSeeds() {
     if (playerdata.unlocked.trueSeed) {
-      const pricePerSeed = 50;
+      const pricePerSeed = 10;
 
       if (playerdata.yuan >= pricePerSeed) {
         const howMuch = await gamePrompt(

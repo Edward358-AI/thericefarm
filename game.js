@@ -193,25 +193,26 @@ tiles.addEventListener("click", (e) => {
           }
 
           // True rice can mutate to brown or gold (if respective switches purchased AND active)
+          // Checks gold FIRST, then brown. Uses 2x base mutation rates.
           if (plantedRice.type === "true") {
-            // Check brown mutation first (higher chance)
-            if (playerdata.switches.trueBrnSwitch && playerdata.switches.trueBrnSwitchActive &&
-              chance(plantedRice.mutationChance)) {
-              dialog("Mutation! +1 brown seed from true rice");
-              playerdata.seed.brnSeeds++;
-              playerdata.stats.seed.brnSeeds++;
-              mutated = true;
-              gainXP(7, 9);
-            }
-            // Check gold mutation (lower chance, 0.5% base * 2 = 1% for true rice)
+            // Check gold mutation FIRST (2x base = 2%, with research scaling)
             if (playerdata.switches.trueGoldSwitch && playerdata.switches.trueGoldSwitchActive &&
-              chance(0.01 * Math.pow(1.02, playerdata.researchPurchases.goldMutation))) {
+              chance(0.02 * Math.pow(1.02, playerdata.researchPurchases.goldMutation))) {
               dialog("Mutation! +1 gold seed from true rice");
               playerdata.seed.goldSeeds++;
               playerdata.stats.seed.goldSeeds++;
               playerdata.unlocked.goldSeed = true;
               mutated = true;
               gainXP(15, 20);
+            }
+            // Then check brown mutation (2x base = 20%, with research scaling)
+            else if (playerdata.switches.trueBrnSwitch && playerdata.switches.trueBrnSwitchActive &&
+              chance(0.20 * Math.pow(1.025, playerdata.researchPurchases.brownMutation))) {
+              dialog("Mutation! +1 brown seed from true rice");
+              playerdata.seed.brnSeeds++;
+              playerdata.stats.seed.brnSeeds++;
+              mutated = true;
+              gainXP(7, 9);
             }
           }
 
