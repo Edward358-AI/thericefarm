@@ -134,6 +134,11 @@ function update() {
 
 // Update market price board display
 function updatePriceBoard() {
+  // Safety check - market.js may not be loaded yet
+  if (typeof getSellPriceMultiplier !== 'function' || typeof getBuyPriceMultiplier !== 'function') {
+    return;
+  }
+
   // Base prices
   const basePrices = {
     regular: 1,
