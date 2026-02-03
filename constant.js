@@ -230,7 +230,7 @@ class Rice {
 
 var regular = new Rice("regular", 5, 0, 0, 1, 1, null);
 var better = new Rice("better", 7, 4, 0.10, 1, 1, "brown");
-var brown = new Rice("brown", 9, 2, 0.005, 0.9, 9, "gold");
+var brown = new Rice("brown", 9, 3, 0.005, 0.9, 20, "gold");
 var gold = new Rice("gold", 11, -1, 0, 0.2, 1000, null); // yieldBonus -1 because it uses floor(half)
 var trueRice = new Rice("true", 4, 50, 0.10, 1, 1, "brown"); // Can mutate to brown, then gold
 

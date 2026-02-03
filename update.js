@@ -147,7 +147,7 @@ function updatePriceBoard() {
   // Base prices
   const basePrices = {
     regular: 1,
-    brown: 9,
+    brown: 20,
     gold: 1000,
     seeds: 1,
     water: 1,
