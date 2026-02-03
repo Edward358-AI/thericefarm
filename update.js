@@ -118,6 +118,11 @@ function update() {
   updateAchievementsDisplay();
   updateStatsDisplay();
 
+  // Check and reset market prices if hour changed
+  if (typeof checkMarketReset === 'function') {
+    checkMarketReset();
+  }
+
   // Update market price board
   if (typeof updatePriceBoard === 'function') {
     updatePriceBoard();
