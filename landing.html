@@ -230,39 +230,87 @@
     </div>
 
     <h3>Economy & Market Fluctuations</h3>
-    <p>Prices update in real-time based on supply and demand. Market resets hourly.</p>
+    <p>Prices update in real-time based on supply and demand. <strong>Market resets every hour</strong> (on the hour).
+    </p>
+
+    <h4>📉 Sell Price Changes</h4>
     <table>
       <tr>
-        <th>Action</th>
-        <th>Effect on Price</th>
-        <th>Limits</th>
+        <th>Rice Type</th>
+        <th>Base Price</th>
+        <th>Decrease Trigger</th>
+        <th>Floor</th>
       </tr>
       <tr>
-        <td>Sell Regular Rice</td>
+        <td>Regular Rice</td>
+        <td>1 元</td>
         <td>-10% per 5,000 sold</td>
-        <td>Min Price: 10% of base</td>
+        <td>10% (0.1 元)</td>
       </tr>
       <tr>
-        <td>Sell Brown Rice</td>
+        <td>Brown Rice</td>
+        <td>9 元</td>
         <td>-5% per 1,000 sold</td>
-        <td>Min Price: 10% of base</td>
+        <td>10% (0.9 元)</td>
       </tr>
       <tr>
-        <td>Sell Gold Rice</td>
+        <td>Gold Rice</td>
+        <td>1,000 元</td>
         <td>-10% per 10 sold</td>
-        <td>Min Price: 10% of base</td>
+        <td>10% (100 元)</td>
+      </tr>
+    </table>
+
+    <h4>📈 Buy Price Changes</h4>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Base Price</th>
+        <th>Increase Trigger</th>
+        <th>Cap</th>
       </tr>
       <tr>
-        <td>Buy Seeds</td>
-        <td>+10-20% per 5,000 bought</td>
+        <td>Seeds</td>
+        <td>1 元</td>
+        <td>+15% per 5,000 bought</td>
         <td>No Cap</td>
       </tr>
       <tr>
-        <td>Buy Fertilizer</td>
-        <td>+10-20% per 1,000 bought</td>
+        <td>Water (2L)</td>
+        <td>1 元</td>
+        <td>+20% per 5,000 bought</td>
+        <td>No Cap</td>
+      </tr>
+      <tr>
+        <td>Fertilizer</td>
+        <td>1.5 元 (1 元 with Tier 1+ research)</td>
+        <td>+15% per 1,000 bought</td>
         <td>No Cap</td>
       </tr>
     </table>
+
+    <h4>🔄 Trade & Chance Rates</h4>
+    <div class="stat-box">
+      <p><strong>Better Seed Chance:</strong> When buying regular seeds, you have a chance to receive better seeds
+        instead.</p>
+      <ul>
+        <li>Base Chance: <span class="formula">10%</span></li>
+        <li>Decrease: <span class="formula">-1% per 1,000 better seeds received this hour</span></li>
+        <li>Rank Bonus: <span class="formula">+5% at Average rank or higher</span></li>
+        <li>Floor: <span class="formula">0%</span></li>
+      </ul>
+      <p><strong>Brown Seed Trade:</strong> Trade better seeds for brown seeds.</p>
+      <ul>
+        <li>Base Cost: <span class="formula">20 better seeds = 1 brown seed</span></li>
+        <li>Increase: <span class="formula">+3 per 100 brown seeds traded this hour</span></li>
+      </ul>
+      <p><strong>Gold Seed Trade:</strong> Trade brown seeds for gold seeds.</p>
+      <ul>
+        <li>Base Cost: <span class="formula">10,000 brown seeds = 1 gold seed</span></li>
+        <li>Increase: <span class="formula">+100 per gold seed traded this hour</span></li>
+      </ul>
+    </div>
+
     <div class="tip">
       <strong>💡 Expert Rank Benefit:</strong> Upon reaching <span class="rank rank-expert">Expert</span> (Lvl 70),
       market prices <strong>stabilize permanently</strong> at 100% value (no fluctuations).
