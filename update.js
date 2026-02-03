@@ -147,8 +147,8 @@ function updatePriceBoard() {
   // Base prices
   const basePrices = {
     regular: 1,
-    brown: 20,
-    gold: 1000,
+    brown: 25,
+    gold: 2000,
     seeds: 1,
     water: 1,
     fertilizer: (playerdata.researchPurchases.betterFert >= 1) ? 1 : 1.5

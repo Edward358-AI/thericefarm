@@ -99,9 +99,9 @@ function getBrownTradeCost() {
   return base + additionalCost;
 }
 
-// Get gold seed trade cost (base 10k brown seeds, +100 per 1 traded)
+// Get gold seed trade cost (base 2.5k brown seeds, +100 per 1 traded)
 function getGoldTradeCost() {
-  const base = 10000;
+  const base = 2500;
   return base + playerdata.market.goldTraded * 100;
 }
 
