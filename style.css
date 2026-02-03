@@ -167,6 +167,47 @@ hr {
   background-color: #4267d7;
 }
 
+/* Tab switch buttons - solid with outline */
+#funbuttons button {
+  background: rgba(10, 20, 50, 0.8);
+  border: 2px solid rgba(59, 130, 246, 0.5);
+  box-shadow: none;
+}
+
+#funbuttons button::before {
+  display: none;
+}
+
+#funbuttons button:hover {
+  background: rgba(20, 40, 80, 0.9);
+  border-color: rgba(59, 130, 246, 0.8);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  transform: none;
+}
+
+#funbuttons button.funactive {
+  background: rgba(37, 99, 235, 0.4);
+  border-color: #3b82f6;
+}
+
+/* Generic outline button style */
+.outline-btn {
+  background: rgba(10, 20, 50, 0.8) !important;
+  border: 2px solid rgba(59, 130, 246, 0.5) !important;
+  box-shadow: none !important;
+}
+
+.outline-btn::before {
+  display: none !important;
+}
+
+.outline-btn:hover {
+  background: rgba(20, 40, 80, 0.9) !important;
+  border-color: rgba(59, 130, 246, 0.8) !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3) !important;
+  transform: none !important;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -1218,4 +1259,74 @@ body {
 .unlock-item.unlocked .unlock-level {
   background: rgba(0, 200, 100, 0.3);
   color: #88ff88;
+}
+
+/* Market Price Board */
+#priceBoard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0, 20, 40, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.shop-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.price-section {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.price-header {
+  font-size: 0.95em;
+  font-weight: bold;
+  color: #00ffff;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 0.85em;
+}
+
+.price-label {
+  color: #b3e5fc;
+}
+
+.price-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(0, 200, 100, 0.2);
+  color: #88ff88;
+}
+
+.price-value.moderate {
+  background: rgba(255, 200, 0, 0.2);
+  color: #ffcc00;
+}
+
+.price-value.bad {
+  background: rgba(255, 80, 80, 0.2);
+  color: #ff6666;
+}
+
+@media (max-width: 600px) {
+  #priceBoard {
+    grid-template-columns: 1fr;
+  }
 }

@@ -118,6 +118,11 @@ function update() {
   updateAchievementsDisplay();
   updateStatsDisplay();
 
+  // Update market price board
+  if (typeof updatePriceBoard === 'function') {
+    updatePriceBoard();
+  }
+
   // Check for level 100 ending
   if (playerdata.level >= 100) {
     const showEndBtn = document.getElementById("showend");
@@ -125,6 +130,88 @@ function update() {
   }
 
   return;
+}
+
+// Update market price board display
+function updatePriceBoard() {
+  // Base prices
+  const basePrices = {
+    regular: 1,
+    brown: 9,
+    gold: 1000,
+    seeds: 1,
+    water: 0.2,
+    fertilizer: (playerdata.researchPurchases.betterFert >= 1) ? 1 : 1.5
+  };
+
+  // Get current multipliers
+  const sellRegular = getSellPriceMultiplier("regular");
+  const sellBrown = getSellPriceMultiplier("brown");
+  const sellGold = getSellPriceMultiplier("gold");
+  const buySeeds = getBuyPriceMultiplier("seeds");
+  const buyWater = getBuyPriceMultiplier("water");
+  const buyFert = getBuyPriceMultiplier("fertilizer");
+
+  // Helper to format price and get CSS class
+  function formatPrice(basePrice, multiplier, isSell) {
+    const price = round2(basePrice * multiplier);
+    const percent = Math.round(multiplier * 100);
+    let cssClass = "";
+
+    if (isSell) {
+      // For selling: lower is bad
+      if (percent < 50) cssClass = "bad";
+      else if (percent < 100) cssClass = "moderate";
+    } else {
+      // For buying: higher is bad
+      if (percent > 150) cssClass = "bad";
+      else if (percent > 100) cssClass = "moderate";
+    }
+
+    return { text: `${price.toLocaleString()} 元 (${percent}%)`, cssClass };
+  }
+
+  // Update sell prices
+  const priceRegular = document.querySelector("#priceRegular .price-value");
+  const priceBrown = document.querySelector("#priceBrown .price-value");
+  const priceGold = document.querySelector("#priceGold .price-value");
+
+  if (priceRegular) {
+    const { text, cssClass } = formatPrice(basePrices.regular, sellRegular, true);
+    priceRegular.textContent = text;
+    priceRegular.className = "price-value " + cssClass;
+  }
+  if (priceBrown) {
+    const { text, cssClass } = formatPrice(basePrices.brown, sellBrown, true);
+    priceBrown.textContent = text;
+    priceBrown.className = "price-value " + cssClass;
+  }
+  if (priceGold) {
+    const { text, cssClass } = formatPrice(basePrices.gold, sellGold, true);
+    priceGold.textContent = text;
+    priceGold.className = "price-value " + cssClass;
+  }
+
+  // Update buy prices
+  const priceSeeds = document.querySelector("#priceSeeds .price-value");
+  const priceWater = document.querySelector("#priceWater .price-value");
+  const priceFert = document.querySelector("#priceFert .price-value");
+
+  if (priceSeeds) {
+    const { text, cssClass } = formatPrice(basePrices.seeds, buySeeds, false);
+    priceSeeds.textContent = text;
+    priceSeeds.className = "price-value " + cssClass;
+  }
+  if (priceWater) {
+    const { text, cssClass } = formatPrice(basePrices.water, buyWater, false);
+    priceWater.textContent = text;
+    priceWater.className = "price-value " + cssClass;
+  }
+  if (priceFert) {
+    const { text, cssClass } = formatPrice(basePrices.fertilizer, buyFert, false);
+    priceFert.textContent = text;
+    priceFert.className = "price-value " + cssClass;
+  }
 }
 
 function updateAchievementsDisplay() {

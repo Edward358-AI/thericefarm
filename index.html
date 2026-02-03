@@ -24,7 +24,7 @@
   <div id="game">
     <h3 id="welcomename">Welcome back, Peasant </h3>
     <p>notice: best for large windows</p>
-    <a href="landing.html" target="_blank"><button>learn more...</button></a>
+    <a href="landing.html" target="_blank"><button class="outline-btn">learn more...</button></a>
     <span id="rankDisplay" style="margin-left: 10px; font-weight: bold; color: gold;"></span>
     <br>
     <button style="display:none;margin: 0 auto;" id="showend"
@@ -74,13 +74,47 @@
       </div>
       <span id="tabs">
         <div class="shop" id="activetab">
-          <button>Buy rice seeds</button><br>
-          <button>???????</button><br>
-          <button>Buy water</button><br>
-          <button>Buy fertilizer</button><br>
-          <button>???????</button><br>
-          <button>???????</button><br>
-          <button>???????</button><br>
+          <div class="shop-buttons">
+            <button>Buy rice seeds</button>
+            <button>???????</button>
+            <button>Buy water</button>
+            <button>Buy fertilizer</button>
+            <button>???????</button>
+            <button>???????</button>
+            <button>???????</button>
+          </div>
+          <div id="priceBoard">
+            <div class="price-section">
+              <div class="price-header">📉 Sell Prices</div>
+              <div class="price-item" id="priceRegular">
+                <span class="price-label">Regular Rice</span>
+                <span class="price-value">1 元 (100%)</span>
+              </div>
+              <div class="price-item" id="priceBrown">
+                <span class="price-label">Brown Rice</span>
+                <span class="price-value">9 元 (100%)</span>
+              </div>
+              <div class="price-item" id="priceGold">
+                <span class="price-label">Gold Rice</span>
+                <span class="price-value">1,000 元 (100%)</span>
+              </div>
+            </div>
+            <div class="price-section">
+              <div class="price-header">📈 Buy Prices</div>
+              <div class="price-item" id="priceSeeds">
+                <span class="price-label">Seeds</span>
+                <span class="price-value">1 元 (100%)</span>
+              </div>
+              <div class="price-item" id="priceWater">
+                <span class="price-label">Water</span>
+                <span class="price-value">0.2 元 (100%)</span>
+              </div>
+              <div class="price-item" id="priceFert">
+                <span class="price-label">Fertilizer</span>
+                <span class="price-value">1.5 元 (100%)</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="science">
           <!-- Mutation Switch Toggles Section -->
