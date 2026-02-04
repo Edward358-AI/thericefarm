@@ -37,47 +37,47 @@ function getRank(level) {
 function applyRankRewards(newRank) {
   switch (newRank) {
     case "Beginner":
-      playerdata.yuan += 2000;
-      playerdata.stats.yuan += 2000;
-      playerdata.fertile += 1000;
-      dialog("Rank Up! Beginner! +2k 元 and 1k fertilizer");
-      break;
-    case "Average":
       playerdata.yuan += 5000;
       playerdata.stats.yuan += 5000;
+      playerdata.fertile += 1000;
+      dialog("Rank Up! Beginner! +10k 元 and 1k fertilizer");
+      break;
+    case "Average":
+      playerdata.yuan += 10000;
+      playerdata.stats.yuan += 10000;
       playerdata.fertile += 2000;
       playerdata.seed.btrSeeds += 100;
       playerdata.stats.seed.btrSeeds += 100;
-      dialog("Rank Up! Average! +5k 元, 2k fertilizer, 100 better seeds");
+      dialog("Rank Up! Average! +10k 元, 2k fertilizer, 100 better seeds");
       break;
     case "Advanced":
-      playerdata.yuan += 10000;
-      playerdata.stats.yuan += 10000;
+      playerdata.yuan += 100000;
+      playerdata.stats.yuan += 100000;
       playerdata.research += 1000;
       playerdata.stats.research += 1000;
       playerdata.seed.btrSeeds += 1000;
       playerdata.stats.seed.btrSeeds += 1000;
-      dialog("Rank Up! Advanced! +10k 元, 1k research, 1k better seeds");
+      dialog("Rank Up! Advanced! +100k 元, 1k research, 1k better seeds");
       break;
     case "Pro":
-      playerdata.yuan += 100000;
-      playerdata.stats.yuan += 100000;
+      playerdata.yuan += 500000;
+      playerdata.stats.yuan += 500000;
       playerdata.research += 10000;
       playerdata.stats.research += 10000;
       playerdata.seed.brnSeeds += 10000;
       playerdata.stats.seed.brnSeeds += 10000;
       playerdata.unlocked.brnSeed = true;
-      dialog("Rank Up! Pro! +100k 元, 10k research, 10k brown seeds. Double XP and research!");
+      dialog("Rank Up! Pro! +500k 元, 10k research, 10k brown seeds. Double XP and research!");
       break;
     case "Expert":
-      playerdata.yuan += 500000;
-      playerdata.stats.yuan += 500000;
+      playerdata.yuan += 1000000;
+      playerdata.stats.yuan += 1000000;
       playerdata.research += 50000;
       playerdata.stats.research += 50000;
       playerdata.seed.goldSeeds += 10;
       playerdata.stats.seed.goldSeeds += 10;
       playerdata.unlocked.goldSeed = true;
-      dialog("Rank Up! Expert! +500k 元, 50k research, 10 gold seeds. Market prices stabilized!");
+      dialog("Rank Up! Expert! +1m 元, 50k research, 10 gold seeds. Market prices stabilized!");
       break;
     case "True":
       playerdata.yuan += 10000000;
@@ -143,9 +143,9 @@ function levelUp() {
   } else {
     // Before research: 40x level, every 10 levels: 80x
     if (playerdata.level % 10 === 0) {
-      yuanReward = 80 * playerdata.level;
+      yuanReward = 120 * playerdata.level;
     } else {
-      yuanReward = 40 * playerdata.level;
+      yuanReward = 60 * playerdata.level;
     }
   }
 

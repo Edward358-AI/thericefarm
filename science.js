@@ -18,8 +18,8 @@ science[0].addEventListener("click", async function researchBrownMutation() {
     const seedCost = getScaledCost(500, n);
 
     if (playerdata.research >= researchCost && playerdata.seed.btrSeeds >= seedCost) {
-      const currentBonus = Math.pow(1.025, n);
-      const newBonus = Math.pow(1.025, n + 1);
+      const currentBonus = 0.1 * Math.pow(1.025, n);
+      const newBonus = 0.1 * Math.pow(1.025, n + 1);
 
       const buyIt = await gameConfirm(
         `🔬 Brown Mutation Research (Tier ${n + 1})`,
@@ -102,8 +102,8 @@ science[4].addEventListener("click", async function researchGoldMutation() {
     const seedCost = getScaledCost(1000, n);
 
     if (playerdata.research >= researchCost && playerdata.seed.brnSeeds >= seedCost) {
-      const currentBonus = Math.pow(1.02, n);
-      const newBonus = Math.pow(1.02, n + 1);
+      const currentBonus = 0.01 * Math.pow(1.02, n);
+      const newBonus = 0.01 * Math.pow(1.02, n + 1);
 
       const buyIt = await gameConfirm(
         `🔬 Gold Mutation Research (Tier ${n + 1})`,
@@ -144,8 +144,8 @@ science[6].addEventListener("click", async function researchGoldSuccess() {
 
     if (playerdata.research >= researchCost && playerdata.seed.goldSeeds >= seedCost) {
       // Calculate with base + milestone bonus
-      const currentRate = 0.2 * Math.pow(1.02, n) * Math.pow(1.04, Math.floor(n / 5));
-      const newRate = 0.2 * Math.pow(1.02, n + 1) * Math.pow(1.04, Math.floor((n + 1) / 5));
+      const currentRate = 0.3 * Math.pow(1.02, n) * Math.pow(1.04, Math.floor(n / 5));
+      const newRate = 0.3 * Math.pow(1.02, n + 1) * Math.pow(1.04, Math.floor((n + 1) / 5));
       const isMilestone = (n + 1) % 5 === 0;
 
       const buyIt = await gameConfirm(
