@@ -35,16 +35,16 @@ function getSellPriceMultiplier(riceType) {
   let multiplier = 1;
   switch (riceType) {
     case "regular":
-      // Per 10k sold: -10% sell price
-      multiplier -= Math.floor(playerdata.market.regularSold / 10000) * 0.10;
+      // Per 20k sold: -10% sell price
+      multiplier -= Math.floor(playerdata.market.regularSold / 20000) * 0.10;
       break;
     case "brown":
-      // Per 2.5k sold: -5% sell price
-      multiplier -= Math.floor(playerdata.market.brownSold / 2500) * 0.05;
+      // Per 10k sold: -5% sell price
+      multiplier -= Math.floor(playerdata.market.brownSold / 10000) * 0.05;
       break;
     case "gold":
-      // Per 50 sold: -10% sell price
-      multiplier -= Math.floor(playerdata.market.goldSold / 50) * 0.10;
+      // Per 100 sold: -10% sell price
+      multiplier -= Math.floor(playerdata.market.goldSold / 100) * 0.10;
       break;
   }
   return Math.max(0.1, multiplier); // Minimum 10% of base price
