@@ -405,24 +405,35 @@ function updateStatsDisplay() {
     statItem('🔬', 'Research', playerdata.stats.research) +
     statItem('🏞️', 'Farmlands', playerdata.land);
 
-  // Research progress
+  // Research progress - with actual rates calculated
+  const brownMutationRate = (10 * Math.pow(1.025, playerdata.researchPurchases.brownMutation)).toFixed(1);
+  const brownSuccessN = playerdata.researchPurchases.brownSuccess;
+  const brownSuccessRate = Math.min(90 * Math.pow(1.005, brownSuccessN) * Math.pow(1.01, Math.floor(brownSuccessN / 5)), 100).toFixed(1);
+  const goldMutationRate = (1 * Math.pow(1.02, playerdata.researchPurchases.goldMutation)).toFixed(2);
+  const goldSuccessN = playerdata.researchPurchases.goldSuccess;
+  const goldSuccessRate = Math.min(30 * Math.pow(1.02, goldSuccessN) * Math.pow(1.04, Math.floor(goldSuccessN / 5)), 100).toFixed(1);
+
   const researchItems = `
     <div class="research-grid">
       <div class="research-item">
         <span class="research-label">Brown Mutation</span>
         <span class="research-tier">Tier ${playerdata.researchPurchases.brownMutation}</span>
+        <span class="research-rate">${brownMutationRate}%</span>
       </div>
       <div class="research-item">
         <span class="research-label">Brown Success</span>
         <span class="research-tier">Tier ${playerdata.researchPurchases.brownSuccess}</span>
+        <span class="research-rate">${brownSuccessRate}%</span>
       </div>
       <div class="research-item">
         <span class="research-label">Gold Mutation</span>
         <span class="research-tier">Tier ${playerdata.researchPurchases.goldMutation}</span>
+        <span class="research-rate">${goldMutationRate}%</span>
       </div>
       <div class="research-item">
         <span class="research-label">Gold Success</span>
         <span class="research-tier">Tier ${playerdata.researchPurchases.goldSuccess}</span>
+        <span class="research-rate">${goldSuccessRate}%</span>
       </div>
       <div class="research-item full-width">
         <span class="research-label">Fertilizer</span>
