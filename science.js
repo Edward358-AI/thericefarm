@@ -24,8 +24,8 @@ science[0].addEventListener("click", async function researchBrownMutation() {
       const buyIt = await gameConfirm(
         `🔬 Brown Mutation Research (Tier ${n + 1})`,
         `<b>Cost:</b> ${researchCost.toLocaleString()} research + ${seedCost.toLocaleString()} better seeds<br><br>` +
-        `Current bonus: <b>${(currentBonus * 100).toFixed(1)}%</b><br>` +
-        `New bonus: <b style="color: #88ff88;">${(newBonus * 100).toFixed(1)}%</b>`,
+        `Current bonus: <b>${(currentBonus * 100).toFixed(2)}%</b><br>` +
+        `New bonus: <b style="color: #88ff88;">${(newBonus * 100).toFixed(2)}%</b>`,
         "Research",
         "Cancel"
       );
@@ -34,8 +34,7 @@ science[0].addEventListener("click", async function researchBrownMutation() {
         playerdata.research -= researchCost;
         playerdata.seed.btrSeeds -= seedCost;
         playerdata.researchPurchases.brownMutation++;
-        const actualChance = 0.05 * newBonus; // Base 5% * multiplier
-        dialog(`Brown mutation upgraded! Now ${(actualChance * 100).toFixed(2)}% chance (Base 5% × ${(newBonus).toFixed(2)}).`);
+        dialog(`Brown mutation upgraded! Now ${(newBonus * 100).toFixed(2)}% chance.`);
         updateScienceLabels();
       }
     } else {
@@ -102,14 +101,14 @@ science[4].addEventListener("click", async function researchGoldMutation() {
     const seedCost = getScaledCost(1000, n);
 
     if (playerdata.research >= researchCost && playerdata.seed.brnSeeds >= seedCost) {
-      const currentBonus = 0.01 * Math.pow(1.02, n);
-      const newBonus = 0.01 * Math.pow(1.02, n + 1);
+      const currentBonus = 0.005 * Math.pow(1.02, n);
+      const newBonus = 0.005 * Math.pow(1.02, n + 1);
 
       const buyIt = await gameConfirm(
         `🔬 Gold Mutation Research (Tier ${n + 1})`,
         `<b>Cost:</b> ${researchCost.toLocaleString()} research + ${seedCost.toLocaleString()} brown seeds<br><br>` +
-        `Current bonus: <b>${(currentBonus * 100).toFixed(1)}%</b><br>` +
-        `New bonus: <b style="color: gold;">${(newBonus * 100).toFixed(1)}%</b>`,
+        `Current bonus: <b>${(currentBonus * 100).toFixed(3)}%</b><br>` +
+        `New bonus: <b style="color: gold;">${(newBonus * 100).toFixed(3)}%</b>`,
         "Research",
         "Cancel"
       );
@@ -118,8 +117,8 @@ science[4].addEventListener("click", async function researchGoldMutation() {
         playerdata.research -= researchCost;
         playerdata.seed.brnSeeds -= seedCost;
         playerdata.researchPurchases.goldMutation++;
-        const actualChance = 0.005 * newBonus; // Base 0.5% * multiplier
-        dialog(`Gold mutation upgraded! Now ${(actualChance * 100).toFixed(3)}% chance (Base 0.5% × ${(newBonus).toFixed(2)}).`);
+        const multiplier = Math.pow(1.02, n + 1);
+        dialog(`Gold mutation upgraded! Now ${(newBonus * 100).toFixed(3)}% chance.`);
         updateScienceLabels();
       }
     } else {

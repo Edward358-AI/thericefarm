@@ -221,14 +221,14 @@ class Rice {
 // Rice types per spec:
 // Regular: 5s, +0 yield, no mutations, 1元, 100% success
 // Better: 7s, +9 yield, brown mutations 10%, 1元, 100% success
-// Brown: 9s, +4 yield, gold mutations 1%, 25元, 90% success
-// Gold: 11s, base yield, no mutations, 2000元, 30% success
+// Brown: 9s, +4 yield, gold mutations 0.5%, 25元, 90% success
+// Gold: 11s, -1 yield, no mutations, 2000元, 25% success
 // True: 4s, +120 yield, brown/gold mutations at 2x rate, 1元, 100% success (yields regular rice)
 
 var regular = new Rice("regular", 5, 0, 0, 1, 1, null);
 var better = new Rice("better", 7, 9, 0.10, 1, 1, "brown");
-var brown = new Rice("brown", 9, 4, 0.01, 0.9, 25, "gold");
-var gold = new Rice("gold", 11, 0, 0, 0.30, 2000, null);
+var brown = new Rice("brown", 9, 4, 0.005, 0.9, 25, "gold");
+var gold = new Rice("gold", 11, -1, 0, 0.25, 2000, null);
 var trueRice = new Rice("true", 4, 120, 0.10, 1, 1, "brown"); // Can mutate to brown, then gold
 
 var rices = [regular, better, brown, gold, trueRice];
