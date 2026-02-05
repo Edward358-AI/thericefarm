@@ -195,9 +195,9 @@ tiles.addEventListener("click", (e) => {
           // True rice can mutate to brown or gold (if respective switches purchased AND active)
           // Checks gold FIRST, then brown. Uses 2x base mutation rates.
           if (plantedRice.type === "true") {
-            // Check gold mutation FIRST (2x base = 2%, with research scaling)
+            // Check gold mutation FIRST (2x base = 1%, with research scaling)
             if (playerdata.switches.trueGoldSwitch && playerdata.switches.trueGoldSwitchActive &&
-              chance(0.02 * Math.pow(1.02, playerdata.researchPurchases.goldMutation))) {
+              chance(0.01 * Math.pow(1.02, playerdata.researchPurchases.goldMutation))) {
               dialog("Mutation! +1 gold seed from true rice");
               playerdata.seed.goldSeeds++;
               playerdata.stats.seed.goldSeeds++;

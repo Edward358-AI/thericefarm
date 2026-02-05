@@ -409,9 +409,9 @@ function updateStatsDisplay() {
   const brownMutationRate = (10 * Math.pow(1.025, playerdata.researchPurchases.brownMutation)).toFixed(1);
   const brownSuccessN = playerdata.researchPurchases.brownSuccess;
   const brownSuccessRate = Math.min(90 * Math.pow(1.005, brownSuccessN) * Math.pow(1.01, Math.floor(brownSuccessN / 5)), 100).toFixed(1);
-  const goldMutationRate = (1 * Math.pow(1.02, playerdata.researchPurchases.goldMutation)).toFixed(2);
+  const goldMutationRate = (.5 * Math.pow(1.02, playerdata.researchPurchases.goldMutation)).toFixed(2);
   const goldSuccessN = playerdata.researchPurchases.goldSuccess;
-  const goldSuccessRate = Math.min(30 * Math.pow(1.02, goldSuccessN) * Math.pow(1.04, Math.floor(goldSuccessN / 5)), 100).toFixed(1);
+  const goldSuccessRate = Math.min(25 * Math.pow(1.02, goldSuccessN) * Math.pow(1.04, Math.floor(goldSuccessN / 5)), 100).toFixed(1);
 
   const researchItems = `
     <div class="research-grid">

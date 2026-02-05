@@ -143,8 +143,8 @@ science[6].addEventListener("click", async function researchGoldSuccess() {
 
     if (playerdata.research >= researchCost && playerdata.seed.goldSeeds >= seedCost) {
       // Calculate with base + milestone bonus
-      const currentRate = 0.3 * Math.pow(1.02, n) * Math.pow(1.04, Math.floor(n / 5));
-      const newRate = 0.3 * Math.pow(1.02, n + 1) * Math.pow(1.04, Math.floor((n + 1) / 5));
+      const currentRate = 0.25 * Math.pow(1.02, n) * Math.pow(1.04, Math.floor(n / 5));
+      const newRate = 0.25 * Math.pow(1.02, n + 1) * Math.pow(1.04, Math.floor((n + 1) / 5));
       const isMilestone = (n + 1) % 5 === 0;
 
       const buyIt = await gameConfirm(
