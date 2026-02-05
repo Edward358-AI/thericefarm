@@ -109,6 +109,14 @@ function update() {
     shop[4].innerHTML = "Buy land";
   }
 
+  if (shop[5].innerHTML === "???????" && playerdata.unlocked.goldSeed) {
+    shop[5].innerHTML = "Trade for gold seeds";
+  }
+
+  if (shop[6] && shop[6].innerHTML === "???????" && playerdata.unlocked.trueSeed) {
+    shop[6].innerHTML = "Buy true seeds";
+  }
+
   // Update research labels  
   if (typeof updateScienceLabels === 'function') {
     updateScienceLabels();
